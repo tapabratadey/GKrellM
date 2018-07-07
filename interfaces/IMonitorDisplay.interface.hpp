@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 01:50:39 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 01:54:05 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/07 13:51:02 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ public:
 	IMonitorDisplay & operator=(IMonitorDisplay const &);
 
 	virtual void screenInit() = 0;
-	virtual void screenRefresh() = 0;
 	virtual void screenDraw() = 0;
+	virtual void screenRefresh() = 0;
 };
 
 
