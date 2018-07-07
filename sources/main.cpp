@@ -6,20 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:53:03 by maghayev          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/07/07 04:53:18 by maghayev         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "GenericModule.class.hpp"
-#include "OSModule.class.hpp"
-#include "DateTimeModule.class.hpp"
-
-#include <iostream>
-#include <sys/sysctl.h>
-#include <sys/utsname.h>
-=======
-/*   Updated: 2018/07/07 14:29:14 by bpierce          ###   ########.fr       */
+/*   Updated: 2018/07/07 15:00:05 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +49,8 @@ int main() {
 	CPUModule cpu_mod;
 
 	std::map<std::string, std::string> mapcpu = cpu_mod.getData();
-	std::cout << "Brand Name " << mapotime["brandName"] << '\n';
+	std::cout << "Brand Name " << mapcpu["brandName"] << '\n';
 
-	while (1);
 
 
 	return 0;
