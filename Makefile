@@ -16,7 +16,7 @@ CLSR = $(patsubst %, $(CLSPATH)%, $(CLS))
 DEPS = $(INTERR) $(CLSR)
 
 SRCPATH = sources/
-SRC  =	main.cpp Hostname.class.cpp OSInfoModule.class.cpp
+SRC  =	main.cpp Hostname.class.cpp OSInfoModule.class.cpp Date.class.cpp
 
 SRCS = $(patsubst %, $(SRCPATH)%, $(SRC))
 

@@ -12,9 +12,8 @@
 
 #include "Hostname.class.hpp"
 #include "OSInfoModule.class.hpp"
-#include <sys/utsname.h>
-#include <sys/sysctl.h>
-#define BUFF_SIZE 256
+#include "Date.class.hpp"
+
 #if 1
 int main()
 {
@@ -28,12 +27,10 @@ int main()
     OSInfoModule osInfo;
     std::cout << "OS info: " << osInfo.getInfo() << std::endl;
 
-#if 0
     //date/time
     Date date;
     std::cout << "Date: " << date.getDate() << std::endl;
-    std::cout << "Time: " << date.getTime() << std::endl;
-#endif
+
     return (0);
 }
 #endif
