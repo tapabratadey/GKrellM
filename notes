@@ -1,0 +1,37 @@
+
+IMonitorModule(parent/abstract class)
+                \/
+        1) Hostname module (done)
+        2) OS info module 
+        3) Date module
+
+
+class IMonitorModule
+    public:
+        IMonitorModule();
+        virtual ~IMonitorModule();
+        IMonitorModule(IMonitorModule const &copy);
+        IMonitorModule &operator=(IMonitorModule const &rhs);
+
+class Hostname : public IMonitorModule
+    public:
+        Hostname();
+        ~Hostname();
+        Hostname(Hostname const &copy);
+        Hostname() &operator=(Hostname const &rhs);
+
+
+
+Step 1:
+-Hostname module
+-OS info module
+-Date module
+
+Step 2:
+-CPU module (Model, clock speed, number of cores, activity...)
+-RAM module
+
+Step 3:
+-Network throughput module //???
+
+Step 4:

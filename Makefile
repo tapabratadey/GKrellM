@@ -15,8 +15,8 @@ CLSR = $(patsubst %, $(CLSPATH)%, $(CLS))
 
 DEPS = $(INTERR) $(CLSR)
 
-SRCPATH = src/
-SRC  =	
+SRCPATH = sources/
+SRC  =	main.cpp Hostname.class.cpp
 
 SRCS = $(patsubst %, $(SRCPATH)%, $(SRC))
 
