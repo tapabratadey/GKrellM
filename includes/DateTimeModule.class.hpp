@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   OSModule.class.hpp                                 :+:      :+:    :+:   */
+/*   DateTimeModule.class.hpp                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/07 01:55:53 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:40:12 by maghayev         ###   ########.fr       */
+/*   Created: 2018/07/07 04:17:11 by maghayev          #+#    #+#             */
+/*   Updated: 2018/07/07 04:52:45 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OSMODULE_CLASS_HPP
-# define OSMODULE_CLASS_HPP
+#ifndef DATETIMEMODULE_CLASS_HPP
+# define DATETIMEMODULE_CLASS_HPP
 
-#include <string>
-#include <sys/utsname.h>
 #include "IMonitorModule.interface.hpp"
+#include <ctime>
+#include <string>
 
-class OSModule : public IMonitorModule {
+class DateTimeModule : public IMonitorModule {
 
 private:
-	struct utsname uts;
+	struct tm * ptm;
+	std::string timestr;
 public:
-	OSModule ();
-	OSModule (OSModule const &);
-	virtual ~OSModule ();
+	DateTimeModule ();
+	DateTimeModule (DateTimeModule const &);
+	virtual ~DateTimeModule ();
 
 	bool	getUpdateRequired() const;
 
-	OSModule & operator=(OSModule const &);
+	DateTimeModule & operator=(DateTimeModule const &);
 
 	void initData();
 	void updateData();
