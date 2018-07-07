@@ -4,19 +4,20 @@ CFLAGS= -Wall -Wextra -Werror
 INC = -I./includes -I./interfaces
 
 INTERPATH = ./interfaces/
-INTER =
+INTER = IMonitorModule.interface.hpp
 INTERR = $(patsubst %, $(INTERPATH)%, $(INTER))
 
 
 CLSPATH = ./includes/
-CLS =
+CLS = GenericModule.class.hpp OSModule.class.hpp
 
 CLSR = $(patsubst %, $(CLSPATH)%, $(CLS))
 
 DEPS = $(INTERR) $(CLSR)
 
-SRCPATH = src/
-SRC  =	
+SRCPATH = sources/
+SRC  =	GenericModule.class.cpp OSModule.class.cpp \
+		main.cpp
 
 SRCS = $(patsubst %, $(SRCPATH)%, $(SRC))
 
@@ -26,7 +27,7 @@ OBJECT = $(SRCS:.cpp=.o)
 	$(CC) $(CFLAGS) $(INC) -g -c -o $@ $<
 
 $(NAME): $(OBJECT)
-	@$(CC) $(CFLAGS) -lncurses $(INC) $(OBJECT) -o $@
+	@$(CC) $(CFLAGS) $(INC) $(OBJECT) -o $@
 	echo "Finished!"
 
 all: $(NAME)
