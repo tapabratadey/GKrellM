@@ -15,12 +15,13 @@
 
 class IMonitorDisplay {
 private:
+	IMonitorDisplay & operator=(IMonitorDisplay const &);
+protected:
 	bool isUpdateRequired;
 public:
-	IMonitorDisplay ();
-	IMonitorDisplay (IMonitorDisplay const &);
-	virtual ~IMonitorDisplay ();
-	IMonitorDisplay & operator=(IMonitorDisplay const &);
+	IMonitorDisplay () {}
+	IMonitorDisplay (IMonitorDisplay const &) {}
+	virtual ~IMonitorDisplay () {}
 
 	virtual void screenInit() = 0;
 	virtual void screenDraw() = 0;
