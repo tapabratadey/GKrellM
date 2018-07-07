@@ -9,7 +9,8 @@ INTERR = $(patsubst %, $(INTERPATH)%, $(INTER))
 
 
 CLSPATH = ./includes/
-CLS = GenericModule.class.hpp OSModule.class.hpp DateTimeModule.class.hpp
+CLS = GenericModule.class.hpp OSModule.class.hpp DateTimeModule.class.hpp \
+			CPUModule.class.hpp
 
 CLSR = $(patsubst %, $(CLSPATH)%, $(CLS))
 
@@ -17,7 +18,8 @@ DEPS = $(INTERR) $(CLSR)
 
 SRCPATH = sources/
 SRC  =	GenericModule.class.cpp OSModule.class.cpp DateTimeModule.class.cpp \
-		main.cpp
+				CPUModule.class.cpp \
+				main.cpp
 
 SRCS = $(patsubst %, $(SRCPATH)%, $(SRC))
 
