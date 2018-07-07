@@ -15,6 +15,9 @@
 
 # include <iostream>
 # include <stdexcept>
+# include <map>
+# include "IMonitorModule.interface.hpp"
+# include "IMonitorDisplay.interface.hpp"
 // # include "../includes/minilibx/mlx.h" // ALL OF THIS IS terrible - change to include just the main header file later
 // # include "mlx.h" // ALL OF THIS IS terrible - change to include just the main header file later
 
@@ -33,7 +36,7 @@ typedef struct			s_image
 	int					y;
 }						t_image;
 
-class Minilibx : public I
+class Minilibx : public IMonitorDisplay
 {
 
 	public:
@@ -54,6 +57,7 @@ class Minilibx : public I
 		// Member Function
 		void			screenInit(void);
 		void			screenDraw(void);
+		void			screenDraw(IMonitorModule & im);
 		void			screenRefresh(void);
 		void			displayData(IMonitorModule & im);
 

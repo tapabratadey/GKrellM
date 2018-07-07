@@ -26,7 +26,7 @@ extern "C"
 
 // Constructors & Destructors
 
-Minilibx::Minilibx(void)
+Minilibx::Minilibx(void) : IMonitorDisplay()
 {
 	// Initializing the MLX Window
 	screenInit();
@@ -80,6 +80,12 @@ void			Minilibx::setWin(void *win)
 
 // Public Member Functions
 
+void			Minilibx::screenDraw(void)
+{
+	return ;
+}
+
+
 void			Minilibx::screenDraw(IMonitorModule & im)
 {
 	std::map<IMonitorModule *, t_image *>::iterator		module;
@@ -89,10 +95,11 @@ void			Minilibx::screenDraw(IMonitorModule & im)
 	if (module == _modules.end())
 	{
 		// create new image to display
-		*newIm = _newImage(MINILIBX_WIN_WIDTH / 5, MINILIBX_WIN_HEIGHT / 5);
+		newIm = _newImage(MINILIBX_WIN_WIDTH / 5, MINILIBX_WIN_HEIGHT / 5);
 		newIm->x = ((_modules.size() / 5) * (MINILIBX_WIN_WIDTH / 5)) + 20;
 		newIm->y = ((_modules.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 20;
-		module = _modules.insert(std::pair<IMonitorModule *, t_image *>(&im, newIm));
+		_modules.insert(std::pair<IMonitorModule *, t_image *>(&im, newIm));
+		module = _modules.find(&im);
 	}
 	mlx_put_image_to_window(getMlx(), getWin(), module->second->img, 0, 0);
 }
@@ -113,14 +120,9 @@ void			Minilibx::screenInit(void)
 		throw Minilibx::MinilibxException("Failed to create mlx window");
 }
 
-void			Minilibx::screenDraw(void)
-{
-
-}
-
 void			Minilibx::screenRefresh(void)
 {
-
+	return ;
 }
 
 // Private Member Functions
@@ -164,7 +166,7 @@ t_image			*Minilibx::_newImage(int width, int height)
 	t_image		*image = new t_image;
 
 	image->img = mlx_new_image(getMlx(), width, height);
-	image->pix = static_cast<int *>(mlx_get_data_addr(image->img, &image->bpp, &image->w, &image->endian));
+	image->pix = reinterpret_cast<int *>(mlx_get_data_addr(image->img, &image->bpp, &image->w, &image->endian));
 	image->w /= 4;
 	image->h = height;
 	return image;
