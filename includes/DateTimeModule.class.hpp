@@ -15,7 +15,6 @@
 
 #include "IMonitorModule.interface.hpp"
 #include <ctime>
-#include <string>
 
 class DateTimeModule : public IMonitorModule {
 

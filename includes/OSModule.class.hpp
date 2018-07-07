@@ -13,7 +13,6 @@
 #ifndef OSMODULE_CLASS_HPP
 # define OSMODULE_CLASS_HPP
 
-#include <string>
 #include <sys/utsname.h>
 #include "IMonitorModule.interface.hpp"
 

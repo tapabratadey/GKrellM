@@ -13,7 +13,6 @@
 #ifndef GENERICMODULE_CLASS_HPP
 # define GENERICMODULE_CLASS_HPP
 
-#include <string>
 #include <unistd.h>
 #include "IMonitorModule.interface.hpp"
 

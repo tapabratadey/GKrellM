@@ -14,6 +14,8 @@
 # define IMONITORMODULE_INTERFACE_HPP
 
 #include <map>
+#include <string>
+#include <sstream>
 
 class IMonitorModule {
 private:
@@ -29,6 +31,13 @@ public:
 	virtual void updateData() = 0;
 	virtual std::map<std::string, std::string> getData() = 0;
 	virtual void dataRunner() = 0;
+	template <typename T>
+  std::string toString ( T Number )
+  {
+     std::ostringstream ss;
+     ss << Number;
+     return ss.str();
+  }
 };
 
 
