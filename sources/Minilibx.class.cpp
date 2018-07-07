@@ -12,6 +12,8 @@
 
 #include "../includes/Minilibx.class.hpp" // terrible - change later to main header file
 #include "Minilibx.class.hpp" // terrible - change later to main header file
+#include <vector>
+#include <map>
 
 #ifdef __cplusplus
 extern "C"
@@ -27,17 +29,7 @@ extern "C"
 Minilibx::Minilibx(void)
 {
 	// Initializing the MLX Window
-	std::string	name = "Fantastic Mr. Monitor";
-	_mlx = mlx_init();
-	if (!_mlx)
-		throw Minilibx::MinilibxException("Failed to init MLX");
-	_win = mlx_new_window(getMlx(),
-		MINILIBX_WIN_WIDTH,
-		MINILIBX_WIN_HEIGHT,
-		const_cast<char *>(name.c_str()));
-	if (!_win)
-		throw Minilibx::MinilibxException("Failed to create mlx window");
-
+	screenInit();
 	// Initializing the keyhooks
 	mlx_do_key_autorepeatoff(_mlx);
 	return ;
@@ -86,16 +78,52 @@ void			Minilibx::setWin(void *win)
 
 
 
-// Member functions
+// Public Member Functions
 
-// int			_exit_mlx_window(Minilibx *m)
-// {
-// 	if (m->getWin())
-// 		mlx_destroy_window(m->getMlx(), m->getWin());
-// 	m->setWin(NULL);
-// 	return 0;
-// }
+void			Minilibx::screenDraw(IMonitorModule & im)
+{
+	std::map<IMonitorModule *, t_image *>::iterator		module;
+	t_image												*newIm;
 
+	module = _modules.find(&im);
+	if (module == _modules.end())
+	{
+		// create new image to display
+		*newIm = _newImage(MINILIBX_WIN_WIDTH / 5, MINILIBX_WIN_HEIGHT / 5);
+		newIm->x = ((_modules.size() / 5) * (MINILIBX_WIN_WIDTH / 5)) + 20;
+		newIm->y = ((_modules.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 20;
+		module = _modules.insert(std::pair<IMonitorModule *, t_image *>(&im, newIm));
+	}
+	mlx_put_image_to_window(getMlx(), getWin(), module->second->img, 0, 0);
+}
+
+
+void			Minilibx::screenInit(void)
+{
+	std::string	name = "Fantastic Mr. Monitor";
+
+	_mlx = mlx_init();
+	if (!_mlx)
+		throw Minilibx::MinilibxException("Failed to init MLX");
+	_win = mlx_new_window(getMlx(),
+		MINILIBX_WIN_WIDTH,
+		MINILIBX_WIN_HEIGHT,
+		const_cast<char *>(name.c_str()));
+	if (!_win)
+		throw Minilibx::MinilibxException("Failed to create mlx window");
+}
+
+void			Minilibx::screenDraw(void)
+{
+
+}
+
+void			Minilibx::screenRefresh(void)
+{
+
+}
+
+// Private Member Functions
 
 
 // EXCEPTION
@@ -130,13 +158,14 @@ std::ostream &	operator<<(std::ostream & o, Minilibx const & m)
 
 
 // Other
-// int			_exit_mlx_window(t_destroy_collection *c)
-// {
-// 	t_destroy_collection a;
 
-// 	a.mlx = c->mlx;
-// 	a.win = c->win;
-// 	if (a.mlx)
-// 		mlx_destroy_window(a.mlx, a.win);
-// 	return 0;
-// }
+t_image			*Minilibx::_newImage(int width, int height)
+{
+	t_image		*image = new t_image;
+
+	image->img = mlx_new_image(getMlx(), width, height);
+	image->pix = static_cast<int *>(mlx_get_data_addr(image->img, &image->bpp, &image->w, &image->endian));
+	image->w /= 4;
+	image->h = height;
+	return image;
+}

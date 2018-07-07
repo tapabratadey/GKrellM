@@ -21,7 +21,19 @@
 # define MINILIBX_WIN_WIDTH 1600
 # define MINILIBX_WIN_HEIGHT 1600
 
-class Minilibx
+typedef struct			s_image
+{
+	void				*img;
+	int					*pix;
+	int					bpp;
+	int					endian;
+	int					w;
+	int					h;
+	int					x;
+	int					y;
+}						t_image;
+
+class Minilibx : public I
 {
 
 	public:
@@ -40,6 +52,9 @@ class Minilibx
 		void			setWin(void *win);
 
 		// Member Function
+		void			screenInit(void);
+		void			screenDraw(void);
+		void			screenRefresh(void);
 		void			displayData(IMonitorModule & im);
 
 	protected:
@@ -57,13 +72,14 @@ class Minilibx
 		};
 
 	private:
-		void		*_mlx;
-		void		*_win;
+		void						*_mlx;
+		void						*_win;
+
+		std::map<IMonitorModule *, t_image *>	_modules;
+		t_image						*_newImage(int width, int height);
 
 };
 
 std::ostream &	operator<<(std::ostream & o, Minilibx const & m);
-
-// int				_exit_mlx_window(t_destroy_collection *c);
 
 # endif
