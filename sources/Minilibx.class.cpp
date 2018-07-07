@@ -19,7 +19,9 @@
 extern "C"
 {
 #endif
+
 #include "mlx.h"
+
 #ifdef __cplusplus
 }
 #endif
@@ -122,6 +124,7 @@ void			Minilibx::screenInit(void)
 
 void			Minilibx::screenRefresh(void)
 {
+	mlx_do_sync(getMlx());
 	return ;
 }
 
