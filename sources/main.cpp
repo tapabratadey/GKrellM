@@ -29,7 +29,15 @@ int main()
 
     //date/time
     Date date;
-    std::cout << "Date: " << date.getDate() << std::endl;
+    std::cout << "Date: " << date.getDate(); // << std::endl;
+
+#if 0
+
+
+#endif
+    //CPU module
+
+    system("top");
 
     return (0);
 }
