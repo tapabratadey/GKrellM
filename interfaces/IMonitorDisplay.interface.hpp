@@ -23,8 +23,8 @@ public:
 	IMonitorDisplay & operator=(IMonitorDisplay const &);
 
 	virtual void screenInit() = 0;
-	virtual void screenRefresh() = 0;
 	virtual void screenDraw() = 0;
+	virtual void screenRefresh() = 0;
 };
 
 
