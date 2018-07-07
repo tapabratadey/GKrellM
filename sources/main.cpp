@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:53:03 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 14:29:14 by bpierce          ###   ########.fr       */
+/*   Updated: 2018/07/07 14:34:27 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ int main() {
 	CPUModule cpu_mod;
 
 	std::map<std::string, std::string> mapcpu = cpu_mod.getData();
-	std::cout << "Brand Name " << mapotime["brandName"] << '\n';
+	std::cout << "Brand Name " << mapcpu["brandName"] << '\n';
 
-	while (1);
 
 
 	return 0;

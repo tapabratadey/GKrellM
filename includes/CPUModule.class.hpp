@@ -15,6 +15,7 @@
 
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#include <iostream>
 #include "IMonitorModule.interface.hpp"
 
 class CPUModule : public IMonitorModule {
@@ -43,8 +44,9 @@ public:
 	template <typename T>
 	std::string parseInfo(std::string str) {
 		size_t copied_len;
-		char * data = new char[256];
-		sysctlbyname(str.c_str(), &data, &copied_len, NULL, 0);
+		char	data[1024];
+		sysctlbyname(str.c_str(), data, &copied_len, NULL, 0);
+		data[copied_len] = 0;
 		return std::string(data);
 	}
 };
