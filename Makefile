@@ -1,4 +1,4 @@
-NAME= system_monitor
+NAME= ft_gkrellm
 CC= clang++
 CFLAGS= -Wall -Wextra -Werror
 INC = -I./includes -I./interfaces
@@ -16,7 +16,7 @@ CLSR = $(patsubst %, $(CLSPATH)%, $(CLS))
 DEPS = $(INTERR) $(CLSR)
 
 SRCPATH = sources/
-SRC  =	main.cpp Hostname.class.cpp
+SRC  =	main.cpp Hostname.class.cpp OSInfoModule.class.cpp
 
 SRCS = $(patsubst %, $(SRCPATH)%, $(SRC))
 
