@@ -43,6 +43,11 @@ int main() {
 	std::cout << "Seconds " << mapotime["second"] << '\n';
 	std::cout << "Time qualifu " << mapotime["timestr"] << '\n';
 
+	CPUModule cpu_mod;
+
+	std::map<std::string, std::string> mapcpu = cpu_mod.getData();
+	std::cout << "Brand Name " << mapotime["brandName"] << '\n';
+
 
 
 	return 0;
