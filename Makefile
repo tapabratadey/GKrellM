@@ -1,6 +1,6 @@
 NAME= system_monitor
 CC= clang++
-CFLAGS= -Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -Werror -std=c++98
 INC = -I./includes -I./interfaces
 
 INTERPATH = ./interfaces/
@@ -9,14 +9,14 @@ INTERR = $(patsubst %, $(INTERPATH)%, $(INTER))
 
 
 CLSPATH = ./includes/
-CLS = GenericModule.class.hpp OSModule.class.hpp
+CLS = GenericModule.class.hpp OSModule.class.hpp DateTimeModule.class.hpp
 
 CLSR = $(patsubst %, $(CLSPATH)%, $(CLS))
 
 DEPS = $(INTERR) $(CLSR)
 
 SRCPATH = sources/
-SRC  =	GenericModule.class.cpp OSModule.class.cpp \
+SRC  =	GenericModule.class.cpp OSModule.class.cpp DateTimeModule.class.cpp \
 		main.cpp
 
 SRCS = $(patsubst %, $(SRCPATH)%, $(SRC))
