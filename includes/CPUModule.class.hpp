@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CPUModule.class.hpp                                 :+:      :+:    :+:   */
+/*   CPUModule.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 01:55:53 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:40:12 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/07 14:28:26 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CPUMODULE_CLASS_HPP
 # define CPUMODULE_CLASS_HPP
 
+#include <sys/types.h>
 #include <sys/sysctl.h>
 #include "IMonitorModule.interface.hpp"
 
@@ -41,9 +42,9 @@ public:
 
 	template <typename T>
 	std::string parseInfo(std::string str) {
-		int copied_len;
+		size_t copied_len;
 		char * data = new char[256];
-		sysctlbyname(str, &data, &copied_len, NULL, 0);
+		sysctlbyname(str.c_str(), &data, &copied_len, NULL, 0);
 		return std::string(data);
 	}
 };
