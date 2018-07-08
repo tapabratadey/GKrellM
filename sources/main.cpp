@@ -19,6 +19,7 @@
 #include "DateTimeModule.class.hpp"
 #include "CPUModule.class.hpp"
 #include "RAMModule.class.hpp"
+#include "Network.class.hpp"
 
 
 int main() {
@@ -45,7 +46,7 @@ int main() {
 	std::cout << "Hour " << mapotime["hour"] << '\n';
 	std::cout << "Minute " << mapotime["minute"] << '\n';
 	std::cout << "Seconds " << mapotime["second"] << '\n';
-	std::cout << "Time qualifu " << mapotime["timestr"] << '\n';
+	std::cout << "Time qualify: " << mapotime["timestr"] << '\n';
 
 	//CPU MODULE
 	CPUModule cpu_mod;
@@ -61,6 +62,11 @@ int main() {
 	std::map<std::string, std::string> mapram = ram_mod.getData();
 	std::cout << "RAM usage: " << mapram["ramUsage"] << '\n';	
 
+	//Network module
+	Network net_mod;
+
+	std::map<std::string, std::string> mapnet = net_mod.getData();
+	std::cout << "Network throughput: " << mapnet["network"] << '\n';	
 
 	return 0;
 }

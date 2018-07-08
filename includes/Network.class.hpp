@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RAMModule.class.hpp                                 :+:      :+:    :+:  */
+/*   Network.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/07 01:55:53 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:40:12 by maghayev         ###   ########.fr       */
+/*   Created: 2018/07/07 18:20:40 by tadey             #+#    #+#             */
+/*   Updated: 2018/07/07 18:20:41 by tadey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAMMODULE_CLASS_HPP
-# define RAMMODULE_CLASS_HPP
+
+#ifndef NETWORK_CLASS_HPP
+# define NETWORK_CLASS_HPP
 
 #include <sys/types.h>
 #include <sys/sysctl.h>
@@ -21,28 +22,28 @@
 #include <string>
 #include "IMonitorModule.interface.hpp"
 
-class RAMModule : public IMonitorModule {
+class Network : public IMonitorModule {
 
 private:
-	/* Data to store for RAM */
+	/* Data to store for Network */
 	const std::string _name;
-	std::string ramUsage;
+	std::string net_stat;
 
 public:
-	RAMModule ();
-	RAMModule (RAMModule const &);
-	virtual ~RAMModule ();
+	Network ();
+	Network (Network const &);
+	virtual ~Network ();
 
 	bool	getUpdateRequired() const;
 
-	RAMModule & operator=(RAMModule const &);
+	Network & operator=(Network const &);
 
 	void initData();
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-	
-	std::string parseRAMInfoUsage();
+
+    std::string parseNetworkUsage();
 };
 
-#endif
+#endif //NETWORK_CLASS_HPP_
