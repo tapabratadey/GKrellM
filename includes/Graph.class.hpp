@@ -28,15 +28,13 @@ extern "C"
 
 # define MAX_GRAPH_HISTORY_SIZE 100
 
-class Graph
+class Graph : public MlxImage
 {
 	private:
 		std::deque<int>		_history;
 		unsigned long const	_maxHistorySize;
 		int					_min;
 		int					_max;
-		MlxImage			*_im;
-		void				*_mlx;
 
 	public:
 		Graph(void);
@@ -46,14 +44,10 @@ class Graph
 		Graph & operator=(Graph const & g);
 
 
-		Graph const				*getThis(void) const;
 		std::deque<int>	const & getHistory(void) const;
 		unsigned long			getMaxHistorySize(void) const;
 		int						getMin(void) const;
 		int						getMax(void) const;
-		MlxImage				*getIm(void) const;
-		void					*getMlx(void) const;
-
 
 		void					addToHistory(int n);
 		void					fillDataAll(void);

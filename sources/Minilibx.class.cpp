@@ -31,8 +31,10 @@ Minilibx::Minilibx(void) : IMonitorDisplay()
 	screenInit();
 	// Initializing the keyhooks
 	mlx_do_key_autorepeatoff(_mlx);
-	mlx_loop_hook(_mlx, reinterpret_cast<int (*)()>(forever_loop), this);
-	std::cout << "Constructor Called" << std::endl;
+	// mlx_loop_hook(_mlx, reinterpret_cast<int (*)()>(forever_loop), this);
+	// mlx_hook(_mlx, 17, 0, reinterpret_cast<int (*)()>(exit_window), this);
+	mlx_key_hook(_win, reinterpret_cast<int (*)()>(key_press), this);
+	// std::cout << "Constructor Called" << std::endl;
 	return ;
 }
 
@@ -59,7 +61,10 @@ Minilibx::~Minilibx(void)
 	for (module = _modules.begin() ; module != _modules.end() ; module++) {
 		delete module->second;
 	}
-	mlx_destroy_window(_mlx, _win);
+	if (_win)
+		mlx_destroy_window(_mlx, _win);
+	this->setMlx(NULL);
+	this->setWin(NULL);
 	return ;
 }
 
@@ -181,9 +186,24 @@ std::ostream &	operator<<(std::ostream & o, Minilibx const & m)
 
 // Other
 
-int				forever_loop(Minilibx *m)
+// int				forever_loop(Minilibx *m)
+// {
+// 	m->screenDraw();
+// 	// m->screenRefresh();
+// 	return 0;
+// }
+
+int				exit_window(void)
 {
-	m->screenDraw();
-	// m->screenRefresh();
+	// m->~Minilibx();
+	exit(0);
+	return 0;
+}
+
+int				key_press(int keycode, Minilibx *m)
+{
+	static_cast<void>(m);
+	if (keycode == 53)
+		exit(0);
 	return 0;
 }
