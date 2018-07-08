@@ -20,7 +20,8 @@
 #include "CPUModule.class.hpp"
 #include "RAMModule.class.hpp"
 #include "Network.class.hpp"
-
+#include "Temperature.class.hpp"
+#include "Uptime.class.hpp"
 
 int main() {
 	GenericModule gen_mod;
@@ -67,6 +68,13 @@ int main() {
 
 	std::map<std::string, std::string> mapnet = net_mod.getData();
 	std::cout << "Network throughput: " << mapnet["network"] << '\n';	
+
+
+	//Temperatur module
+	Uptime uptime_mod;
+
+	std::map<std::string, std::string> mapuptime = uptime_mod.getData();
+	std::cout << "Uptime: " << mapuptime["uptime"] << '\n';
 
 	return 0;
 }
