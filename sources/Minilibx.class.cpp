@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Minilibx.class.hpp" // terrible - change later to main header file
 #include "Minilibx.class.hpp" // terrible - change later to main header file
-#include <vector>
-#include <map>
 
 #ifdef __cplusplus
 extern "C"
@@ -34,6 +31,8 @@ Minilibx::Minilibx(void) : IMonitorDisplay()
 	screenInit();
 	// Initializing the keyhooks
 	mlx_do_key_autorepeatoff(_mlx);
+	mlx_loop_hook(_mlx, reinterpret_cast<int (*)()>(forever_loop), this);
+	std::cout << "Constructor Called" << std::endl;
 	return ;
 }
 
@@ -55,6 +54,11 @@ Minilibx & Minilibx::operator=(Minilibx const & m)
 
 Minilibx::~Minilibx(void)
 {
+	std::map<IMonitorModule *, MlxImage *>::iterator	module;
+
+	for (module = _modules.begin() ; module != _modules.end() ; module++) {
+		delete module->second;
+	}
 	mlx_destroy_window(_mlx, _win);
 	return ;
 }
@@ -72,6 +76,9 @@ void			*Minilibx::getMlx(void) const
 void			*Minilibx::getWin(void) const
 { return _win;}
 
+std::map<IMonitorModule *, MlxImage *>	Minilibx::getModules(void) const
+{ return _modules;}
+
 void			Minilibx::setMlx(void *mlx)
 { _mlx = mlx;}
 
@@ -84,26 +91,35 @@ void			Minilibx::setWin(void *win)
 
 void			Minilibx::screenDraw(void)
 {
-	return ;
+	for (std::map<IMonitorModule *, MlxImage *>::iterator module = _modules.begin() ; module != _modules.end() ; module++) {
+		this->_drawToScreen(*module->second);
+	}
 }
 
 
 void			Minilibx::screenDraw(IMonitorModule & im)
 {
-	std::map<IMonitorModule *, t_image *>::iterator		module;
-	t_image												*newIm;
+	std::map<IMonitorModule *, MlxImage *>::iterator	module;
+	MlxImage											*newIm;
 
 	module = _modules.find(&im);
 	if (module == _modules.end())
 	{
 		// create new image to display
-		newIm = _newImage(MINILIBX_WIN_WIDTH / 5, MINILIBX_WIN_HEIGHT / 5);
-		newIm->x = ((_modules.size() / 5) * (MINILIBX_WIN_WIDTH / 5)) + 20;
-		newIm->y = ((_modules.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 20;
-		_modules.insert(std::pair<IMonitorModule *, t_image *>(&im, newIm));
+		newIm = new MlxImage(_mlx, MINILIBX_WIN_WIDTH / 5, MINILIBX_WIN_HEIGHT / 5);
+		newIm->backgroundFill(45824); // a green color
+		newIm->setX(((_modules.size() / 5) * (MINILIBX_WIN_WIDTH / 5)) + 20);
+		newIm->setY(((_modules.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 20);
+		std::cout << newIm->getX() << "  " << newIm->getY() << std::endl;
+		_modules.insert(std::pair<IMonitorModule *, MlxImage *>(&im, newIm));
 		module = _modules.find(&im);
 	}
-	mlx_put_image_to_window(getMlx(), getWin(), module->second->img, 0, 0);
+	this->_drawToScreen(*module->second);
+}
+
+void			Minilibx::_drawToScreen(MlxImage const & im) const
+{
+	mlx_put_image_to_window(_mlx, _win, im.getImg(), im.getX(), im.getY());
 }
 
 
@@ -120,11 +136,12 @@ void			Minilibx::screenInit(void)
 		const_cast<char *>(name.c_str()));
 	if (!_win)
 		throw Minilibx::MinilibxException("Failed to create mlx window");
+	this->screenRefresh();
 }
 
 void			Minilibx::screenRefresh(void)
 {
-	mlx_do_sync(getMlx());
+	mlx_do_sync(_mlx);
 	return ;
 }
 
@@ -164,13 +181,9 @@ std::ostream &	operator<<(std::ostream & o, Minilibx const & m)
 
 // Other
 
-t_image			*Minilibx::_newImage(int width, int height)
+int				forever_loop(Minilibx *m)
 {
-	t_image		*image = new t_image;
-
-	image->img = mlx_new_image(getMlx(), width, height);
-	image->pix = reinterpret_cast<int *>(mlx_get_data_addr(image->img, &image->bpp, &image->w, &image->endian));
-	image->w /= 4;
-	image->h = height;
-	return image;
+	m->screenDraw();
+	// m->screenRefresh();
+	return 0;
 }
