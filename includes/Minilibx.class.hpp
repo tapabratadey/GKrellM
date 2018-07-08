@@ -18,23 +18,12 @@
 # include <map>
 # include "IMonitorModule.interface.hpp"
 # include "IMonitorDisplay.interface.hpp"
+# include "MlxImage.class.hpp"
 // # include "../includes/minilibx/mlx.h" // ALL OF THIS IS terrible - change to include just the main header file later
 // # include "mlx.h" // ALL OF THIS IS terrible - change to include just the main header file later
 
-# define MINILIBX_WIN_WIDTH 1600
-# define MINILIBX_WIN_HEIGHT 1600
-
-typedef struct			s_image
-{
-	void				*img;
-	int					*pix;
-	int					bpp;
-	int					endian;
-	int					w;
-	int					h;
-	int					x;
-	int					y;
-}						t_image;
+# define MINILIBX_WIN_WIDTH 800
+# define MINILIBX_WIN_HEIGHT 800
 
 class Minilibx : public IMonitorDisplay
 {
@@ -47,9 +36,10 @@ class Minilibx : public IMonitorDisplay
 		Minilibx & operator=(Minilibx const & m);
 
 		// Getters & Setters
-		Minilibx const	*getThis(void) const;
-		void			*getMlx(void) const;
-		void			*getWin(void) const;
+		Minilibx const							*getThis(void) const;
+		void									*getMlx(void) const;
+		void									*getWin(void) const;
+		std::map<IMonitorModule *, MlxImage *>	getModules(void) const;
 
 		void			setMlx(void	*mlx);
 		void			setWin(void *win);
@@ -79,11 +69,13 @@ class Minilibx : public IMonitorDisplay
 		void						*_mlx;
 		void						*_win;
 
-		std::map<IMonitorModule *, t_image *>	_modules;
-		t_image						*_newImage(int width, int height);
+		std::map<IMonitorModule *, MlxImage *>	_modules;
+		void									_drawToScreen(MlxImage const & im) const;
 
 };
 
 std::ostream &	operator<<(std::ostream & o, Minilibx const & m);
+
+int				forever_loop(Minilibx *m);
 
 # endif
