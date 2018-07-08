@@ -12,7 +12,7 @@
 
 #include "RAMModule.class.hpp"
 
-RAMModule::RAMModule () {
+RAMModule::RAMModule () : _name("RAM USAGE") {
 	this->isUpdateRequired = false;
 	this->initData();
 }
@@ -32,6 +32,7 @@ RAMModule & RAMModule::operator=(RAMModule const & rhs) {
 }
 
 void RAMModule::dataRunner() {
+		this->ramUsage = this->parseRAMInfoUsage();
 	return ;
 }
 
@@ -43,5 +44,6 @@ void RAMModule::updateData() {
 }
 std::map<std::string, std::string> RAMModule::getData() {
 	std::map<std::string, std::string> map;
+	map["ramUsage"] = this->ramUsage;
 	return map;
 }

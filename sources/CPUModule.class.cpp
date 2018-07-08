@@ -12,7 +12,8 @@
 
 #include "CPUModule.class.hpp"
 
-CPUModule::CPUModule () {
+CPUModule::CPUModule () : _name("CPU USAGE")
+{
 	this->isUpdateRequired = false;
 	this->initData();
 }
@@ -33,7 +34,8 @@ CPUModule & CPUModule::operator=(CPUModule const & rhs) {
 
 void CPUModule::dataRunner() {
 	this->brandName = this->parseInfo<std::string>("machdep.cpu.brand_string");
-	this->coreCount = this->parseInfo<std::string>("machdep.cpu.core_count");
+	this->coreCount = this->parseInfo2("machdep.cpu.core_count");
+	this->cpuUsage = this->parseCPUInfoUsage();
 	return ;
 }
 
@@ -45,6 +47,8 @@ void CPUModule::updateData() {
 }
 std::map<std::string, std::string> CPUModule::getData() {
 	std::map<std::string, std::string> map;
+	map["coreCount"] = this->coreCount;
 	map["brandName"] = this->brandName;
+	map["cpuUsage"] = this->cpuUsage;
 	return map;
 }

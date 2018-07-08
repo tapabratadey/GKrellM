@@ -18,6 +18,7 @@
 #include "OSModule.class.hpp"
 #include "DateTimeModule.class.hpp"
 #include "CPUModule.class.hpp"
+#include "RAMModule.class.hpp"
 
 
 int main() {
@@ -46,11 +47,19 @@ int main() {
 	std::cout << "Seconds " << mapotime["second"] << '\n';
 	std::cout << "Time qualifu " << mapotime["timestr"] << '\n';
 
+	//CPU MODULE
 	CPUModule cpu_mod;
 
 	std::map<std::string, std::string> mapcpu = cpu_mod.getData();
-	std::cout << "Brand Name " << mapcpu["brandName"] << '\n';
-
+	std::cout << "Brand Name: " << mapcpu["brandName"] << '\n';
+	std::cout << "Core Count: " << mapcpu["coreCount"] << '\n';
+	std::cout << "CPU usage: " << mapcpu["cpuUsage"] << '\n';
+	
+	//RAMMODULE 
+	RAMModule ram_mod;
+	
+	std::map<std::string, std::string> mapram = ram_mod.getData();
+	std::cout << "RAM usage: " << mapram["ramUsage"] << '\n';	
 
 
 	return 0;
