@@ -76,6 +76,8 @@ class Minilibx : public IMonitorDisplay
 
 std::ostream &	operator<<(std::ostream & o, Minilibx const & m);
 
-int				forever_loop(Minilibx *m);
+// int				forever_loop(Minilibx *m);
+int				exit_window(void);
+int				key_press(int keycode, Minilibx *m);
 
 # endif

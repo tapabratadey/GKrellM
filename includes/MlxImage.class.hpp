@@ -27,7 +27,7 @@ extern "C"
 
 class MlxImage
 {
-	private:
+	protected:
 		void				*_mlx;
 
 		void				*_img;
