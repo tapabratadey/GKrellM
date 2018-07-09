@@ -18,12 +18,29 @@
 # include <map>
 # include "IMonitorModule.interface.hpp"
 # include "IMonitorDisplay.interface.hpp"
+# include "Graph.class.hpp"
 # include "MlxImage.class.hpp"
-// # include "../includes/minilibx/mlx.h" // ALL OF THIS IS terrible - change to include just the main header file later
-// # include "mlx.h" // ALL OF THIS IS terrible - change to include just the main header file later
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#include "mlx.h"
+
+#ifdef __cplusplus
+}
+#endif
 
 # define MINILIBX_WIN_WIDTH 800
 # define MINILIBX_WIN_HEIGHT 800
+enum
+{
+	C_RED = 14830891,
+	C_GREEN = 3118633,
+	C_BLUE = 6977013,
+	C_ORANGE = 14846501
+};
 
 class Minilibx : public IMonitorDisplay
 {
@@ -36,10 +53,11 @@ class Minilibx : public IMonitorDisplay
 		Minilibx & operator=(Minilibx const & m);
 
 		// Getters & Setters
-		Minilibx const							*getThis(void) const;
-		void									*getMlx(void) const;
-		void									*getWin(void) const;
-		std::map<IMonitorModule *, MlxImage *>	getModules(void) const;
+		Minilibx const						*getThis(void) const;
+		void								*getMlx(void) const;
+		void								*getWin(void) const;
+		std::map<std::string, Graph *>		getGraphs(void) const;
+		BaseBase							*getBaseModule(void) const;
 
 		void			setMlx(void	*mlx);
 		void			setWin(void *win);
@@ -47,9 +65,7 @@ class Minilibx : public IMonitorDisplay
 		// Member Function
 		void			screenInit(void);
 		void			screenDraw(void);
-		void			screenDraw(IMonitorModule & im);
 		void			screenRefresh(void);
-		void			displayData(IMonitorModule & im);
 
 	protected:
 		class MinilibxException : public std::exception
@@ -69,8 +85,7 @@ class Minilibx : public IMonitorDisplay
 		void						*_mlx;
 		void						*_win;
 
-		std::map<IMonitorModule *, MlxImage *>	_modules;
-		void									_drawToScreen(MlxImage const & im) const;
+		std::map<std::string, Graph *>	_graphs;
 
 };
 
