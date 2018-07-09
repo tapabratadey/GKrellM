@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Battery.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 16:38:23 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/08 16:38:25 by tadey            ###   ########.fr       */
+/*   Updated: 2018/07/08 18:39:38 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Battery.class.hpp"
 
 Battery::Battery () : _name("Battery") {
+	this->moduleName = "BatteryModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }

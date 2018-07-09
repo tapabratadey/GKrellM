@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:53:03 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 17:47:19 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:43:56 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 #include <sys/sysctl.h>
 #include <sys/utsname.h>
 
-#include "GenericModule.class.hpp"
-#include "OSModule.class.hpp"
-#include "DateTimeModule.class.hpp"
-#include "CPUModule.class.hpp"
-#include "RAMModule.class.hpp"
-#include "Network.class.hpp"
-#include "Uptime.class.hpp"
-#include "Battery.class.hpp"
 #include "BaseBase.class.hpp"
 
 int main() {
@@ -29,8 +21,8 @@ int main() {
 
 	std::map<std::string, std::map<std::string, std::string> > map = base.getData();
 
-	std::cout << "Hostname " << map["CPUModule"]["hostname"] << '\n';
-	std::cout << "Name " << map["CPUModule"]["name"] << '\n';
+	std::cout << "Hostname " << map["GenericModule"]["hostname"] << '\n';
+	std::cout << "Name " << map["GenericModule"]["name"] << '\n';
 
 	std::cout << "Architecture " << map["OSModule"]["arhitecture"] << '\n';
 	std::cout << "Version " << map["OSModule"]["version"] << '\n';
@@ -53,18 +45,9 @@ int main() {
 
 	std::cout << "Network throughput: " << map["NetworkModule"]["network"] << '\n';
 
+	std::cout << "Uptime: " << map["UptimeModule"]["uptime"] << '\n';
 
-	//Uptime module
-	Uptime uptime_mod;
-
-	std::map<std::string, std::string> mapuptime = uptime_mod.getData();
-	std::cout << "Uptime: " << mapuptime["uptime"] << '\n';
-
-	//Battery module
-	Battery battery_mod;
-
-	std::map<std::string, std::string> mapbattery = battery_mod.getData();
-	std::cout << "Battery: " << mapbattery["battery"] << '\n';
+	std::cout << "Battery: " << map["BatteryModule"]["battery"] << '\n';
 	std::cout << std::endl;
 	return 0;
 }

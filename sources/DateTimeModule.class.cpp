@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 04:30:11 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 17:49:11 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:37:23 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ DateTimeModule & DateTimeModule::operator=(DateTimeModule const & rhs) {
 void DateTimeModule::dataRunner() {
 	time_t rawtime;
 	time ( &rawtime );
+	this->ptm = gmtime ( &rawtime );
 	this->timestr = ctime(&rawtime);
 	return ;
 }
@@ -47,6 +48,12 @@ void DateTimeModule::updateData() {
 }
 std::map<std::string, std::string> DateTimeModule::getData() {
 	std::map<std::string, std::string> map;
+	map["year"] = this->toString(this->ptm->tm_year + 1900);
+	map["month"] = this->toString(this->ptm->tm_mon);
+	map["day"] = this->toString(this->ptm->tm_mday);
+	map["hour"] = this->toString(this->ptm->tm_hour);
+	map["minute"] = this->toString(this->ptm->tm_min);
+	map["second"] = this->toString(this->ptm->tm_sec);
 	map["timestr"] = this->timestr;
 	return map;
 }
