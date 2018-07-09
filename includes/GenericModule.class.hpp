@@ -14,6 +14,7 @@
 # define GENERICMODULE_CLASS_HPP
 
 #include <unistd.h>
+#include <fstream>
 #include "IMonitorModule.interface.hpp"
 
 class GenericModule : public IMonitorModule {
@@ -22,7 +23,9 @@ class GenericModule : public IMonitorModule {
 private:
 	std::string name;
 	std::string hostname;
-
+	std::string model;
+	std::string memory;
+	std::string serial;
 public:
 	GenericModule ();
 	GenericModule (GenericModule const &);
@@ -31,7 +34,9 @@ public:
 	bool	getUpdateRequired() const;
 	std::string getUserName() const;
 	std::string getHostname() const;
-
+	std::string parseSerialInfo();
+	std::string parseMemoryInfo();
+	std::string parseModelInfo();
 	GenericModule & operator=(GenericModule const &);
 
 	void readName();
