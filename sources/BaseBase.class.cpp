@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 16:34:45 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:43:06 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 19:02:42 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void BaseBase::updater(IMonitorModule * module) {
 	return;
 }
 void BaseBase::dataGetter(IMonitorModule * module) {
+	this->updater(module);
 	this->data[module->getModuleName()] = module->getData();
 }
 
