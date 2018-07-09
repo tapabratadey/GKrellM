@@ -14,10 +14,14 @@
 # define IMONITORDISPLAY_INTERFACE_HPP
 
 class IMonitorDisplay {
+
 private:
 	IMonitorDisplay & operator=(IMonitorDisplay const &);
+
 protected:
-	bool isUpdateRequired;
+	bool 		isUpdateRequired;
+	BaseBase 	*baseModule;
+
 public:
 	IMonitorDisplay () {}
 	IMonitorDisplay (IMonitorDisplay const &) {}
@@ -26,6 +30,8 @@ public:
 	virtual void screenInit() = 0;
 	virtual void screenDraw() = 0;
 	virtual void screenRefresh() = 0;
+
+	virtual void getBaseModule() = 0;
 };
 
 

@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:53:03 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 17:47:19 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:06:48 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@
 #include "Uptime.class.hpp"
 #include "Battery.class.hpp"
 #include "BaseBase.class.hpp"
+#include "Minilibx.class.hpp"
+#include "Graph.class.hpp"
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#include "mlx.h"
+
+#ifdef __cplusplus
+}
+#endif
+
 
 int main() {
 	BaseBase base;
