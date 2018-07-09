@@ -18,12 +18,18 @@
 # include <map>
 # include "IMonitorModule.interface.hpp"
 # include "IMonitorDisplay.interface.hpp"
+# include "Graph.class.hpp"
 # include "MlxImage.class.hpp"
-// # include "../includes/minilibx/mlx.h" // ALL OF THIS IS terrible - change to include just the main header file later
-// # include "mlx.h" // ALL OF THIS IS terrible - change to include just the main header file later
 
 # define MINILIBX_WIN_WIDTH 800
 # define MINILIBX_WIN_HEIGHT 800
+enum
+{
+	C_RED = 14830891,
+	C_GREEN = 3118633,
+	C_BLUE = 6977013,
+	C_ORANGE = 14846501
+}
 
 class Minilibx : public IMonitorDisplay
 {
@@ -69,8 +75,7 @@ class Minilibx : public IMonitorDisplay
 		void						*_mlx;
 		void						*_win;
 
-		std::map<IMonitorModule *, MlxImage *>	_modules;
-		void									_drawToScreen(MlxImage const & im) const;
+		std::map<std::string, Graph *>	_graphs;
 
 };
 

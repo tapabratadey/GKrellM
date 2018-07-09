@@ -56,13 +56,19 @@ Minilibx & Minilibx::operator=(Minilibx const & m)
 
 Minilibx::~Minilibx(void)
 {
-	std::map<IMonitorModule *, MlxImage *>::iterator	module;
+	std::map<std::string *, Graph *>::iterator	module;
+	std::map<std::string, Graph *>::iterator	windowDestroyer;
 
 	for (module = _modules.begin() ; module != _modules.end() ; module++) {
 		delete module->second;
 	}
 	if (_win)
 		mlx_destroy_window(_mlx, _win);
+	for (graphDestroyer = _windows.begin() ; windowDestroyer != _windows.end() ; windowDestroyer++) {
+		window = windowDestroyer->second;
+		_windows.erase(windowDestroyer);
+		delwin(window);
+	}
 	this->setMlx(NULL);
 	this->setWin(NULL);
 	return ;
@@ -81,7 +87,7 @@ void			*Minilibx::getMlx(void) const
 void			*Minilibx::getWin(void) const
 { return _win;}
 
-std::map<IMonitorModule *, MlxImage *>	Minilibx::getModules(void) const
+std::map<std::string *, Graph *>	Minilibx::getModules(void) const
 { return _modules;}
 
 void			Minilibx::setMlx(void *mlx)
@@ -96,41 +102,17 @@ void			Minilibx::setWin(void *win)
 
 void			Minilibx::screenDraw(void)
 {
-	for (std::map<IMonitorModule *, MlxImage *>::iterator module = _modules.begin() ; module != _modules.end() ; module++) {
+	for (std::map<std::string *, Graph *>::iterator module = _modules.begin() ; module != _modules.end() ; module++) {
 		this->_drawToScreen(*module->second);
 	}
 }
 
-
-void			Minilibx::screenDraw(IMonitorModule & im)
-{
-	std::map<IMonitorModule *, MlxImage *>::iterator	module;
-	MlxImage											*newIm;
-
-	module = _modules.find(&im);
-	if (module == _modules.end())
-	{
-		// create new image to display
-		newIm = new MlxImage(_mlx, MINILIBX_WIN_WIDTH / 5, MINILIBX_WIN_HEIGHT / 5);
-		newIm->backgroundFill(45824); // a green color
-		newIm->setX(((_modules.size() / 5) * (MINILIBX_WIN_WIDTH / 5)) + 20);
-		newIm->setY(((_modules.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 20);
-		std::cout << newIm->getX() << "  " << newIm->getY() << std::endl;
-		_modules.insert(std::pair<IMonitorModule *, MlxImage *>(&im, newIm));
-		module = _modules.find(&im);
-	}
-	this->_drawToScreen(*module->second);
-}
-
-void			Minilibx::_drawToScreen(MlxImage const & im) const
-{
-	mlx_put_image_to_window(_mlx, _win, im.getImg(), im.getX(), im.getY());
-}
-
-
 void			Minilibx::screenInit(void)
 {
-	std::string	name = "Fantastic Mr. Monitor";
+	std::map<std::string, std::map<std::string, std::string> >	myMap;
+	std::string													name = "Fantastic Mr. Monitor";
+	int															color_array[4] = {RED, GREEN, BLUE, ORANGE}
+	int															i = 0;
 
 	_mlx = mlx_init();
 	if (!_mlx)
@@ -141,7 +123,39 @@ void			Minilibx::screenInit(void)
 		const_cast<char *>(name.c_str()));
 	if (!_win)
 		throw Minilibx::MinilibxException("Failed to create mlx window");
-	this->screenRefresh();
+
+	myMap = this->baseModule->getData();
+	for (std::map<std::string, std::map<std::string, std::string> >::iterator moduleIterator = myMap.begin() ; moduleIterator != myMap.end() ; moduleIterator++) {
+		_graphs[moduleIterator->first] = new Graph(_mlx, MINILIBX_WIN_WIDTH / 5, MINILIBX_WIN_HEIGHT / 5);
+		_graphs[moduleIterator->first]->backgroundFill(color_array[i++ % 4]); // a green color
+		_graphs[moduleIterator->first]->setX(((_graphs.size() / 5) * (MINILIBX_WIN_WIDTH / 5)) + 20);
+		_graphs[moduleIterator->first]->setY(((_graphs.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 20);
+	}
+}
+
+void			Minilibx::screenDraw(std::string & im)
+{
+	std::map<std::string, std::map<std::string, std::string> >	dataMap = this->baseModule->getData();
+	Graph														*graph;
+	static int													color_array[4] = {RED, GREEN, BLUE, ORANGE}
+	int															color_iterator = 0;
+	int															startY;
+	std::map<std::string *, Graph *>::iterator					graph;
+	std::string													printString;
+
+	mlx_clear_window (_mlx, _win);
+	for (std::map<std::string, std::map<std::string, std::string> >::iterator dataIterator = dataMap.begin() ; dataIterator != dataMap.end() ; dataIterator++) {
+		graph = _graphs[dataIterator->first];
+		startY = graph.getY();
+		mlx_string_put(_mlx, _win, graph.getX(), startY, color_array[color_iterator % 4], dataIterator->first.c_str());
+		for (std::map<std::string, std::string>::iterator moduleItemIterator = dataIterator->second.begin() ; moduleItemIterator != dataIterator->second.end() ; moduleItemIterator++) {
+			startY += 10;
+			printString = moduleItemIterator->first + " + " + moduleItemIterator->second;
+			mlx_string_put(_mlx, _win, graph.getX(), startY, color_array[color_iterator % 4], printString.c_str());
+		}
+		// If a graph needs to be drawn do it here
+		//mlx_put_image_to_window(_mlx, _win, graph.getImg(), graph.getX(), startY + 10);
+	}
 }
 
 void			Minilibx::screenRefresh(void)
