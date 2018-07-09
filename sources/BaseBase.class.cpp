@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 16:34:45 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 19:02:42 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:18:44 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,16 @@ BaseBase::BaseBase (BaseBase const & src) {
 }
 BaseBase::~BaseBase () {}
 
+std::map<std::string, std::map<std::string, std::string> > BaseBase::getDataVar() const {	return this->data;	}
+std::vector<IMonitorModule*> BaseBase::getModulesVar() const {	return this->modules;	}
+
 BaseBase & BaseBase::operator=(BaseBase const & rhs) {
 	if (this != &rhs) {
-
+		this->data = rhs.getDataVar();
+		if (!this->modules.empty())
+			for (std::vector<IMonitorModule*>::iterator v = this->modules.begin(); v != this->modules.end(); v++)
+				delete *v;
+		this->modules = rhs.getModulesVar();
 	}
 	return *this;
 }

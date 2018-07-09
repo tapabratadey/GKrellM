@@ -1,8 +1,8 @@
 NAME= ft_gkrellm
 CC= clang++
-CFLAGS= -Wall -Wextra -Werror -std=c++98 
+CFLAGS= -Wall -Wextra -Werror -std=c++98
 INC = -I./includes -I./interfaces -I./includes/minilibx/
-MINILIBX = -L includes/minilibx -lmlx -framework OpenGL -framework Appkit -L/usr/lib includes/minilibx/libmlx.a
+MINILIBX = -L ./includes/minilibx -lmlx -framework OpenGL -framework Appkit -L/usr/lib ./includes/minilibx/libmlx.a
 
 INTERPATH = ./interfaces/
 INTER = IMonitorModule.interface.hpp IMonitorDisplay.interface.hpp

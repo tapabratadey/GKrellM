@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Network.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 18:20:40 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/07 18:20:41 by tadey            ###   ########.fr       */
+/*   Updated: 2018/07/08 20:16:23 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,14 @@
 class Network : public IMonitorModule {
 
 private:
-	/* Data to store for Network */
-	const std::string _name;
-	std::string net_stat;
+	std::string netStat;
 
 public:
 	Network ();
 	Network (Network const &);
 	virtual ~Network ();
 
-	bool	getUpdateRequired() const;
+	std::string getNetStat() const;
 
 	Network & operator=(Network const &);
 
@@ -42,7 +40,6 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-	std::string getName() const;
 
     std::string parseNetworkUsage();
 };

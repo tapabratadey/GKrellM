@@ -6,28 +6,32 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 04:30:11 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:37:23 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:15:25 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DateTimeModule.class.hpp"
 
-DateTimeModule::DateTimeModule () : _name("DATE/TIME MODULE") {
+DateTimeModule::DateTimeModule () {
 	this->moduleName = "DateTimeModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }
-DateTimeModule::DateTimeModule (DateTimeModule const & src) {
+DateTimeModule::DateTimeModule (DateTimeModule const & src) : IMonitorModule(src) {
 	*this = src;
 	return ;
 }
 DateTimeModule::~DateTimeModule () {}
 
 bool	DateTimeModule::getUpdateRequired() const {	return this->isUpdateRequired;	}
+struct tm * DateTimeModule::getTmTime()		const {	return this->ptm;	}
+std::string DateTimeModule::getTimeStr()	const {	return this->timestr;	}
 
 DateTimeModule & DateTimeModule::operator=(DateTimeModule const & rhs) {
 	if (this != &rhs) {
 		this->isUpdateRequired = rhs.getUpdateRequired();
+		this->ptm = rhs.getTmTime();
+		this->timestr = rhs.getTimeStr();
 	}
 	return *this;
 }
@@ -57,6 +61,3 @@ std::map<std::string, std::string> DateTimeModule::getData() {
 	map["timestr"] = this->timestr;
 	return map;
 }
-
-std::string DateTimeModule::getName() const
-{return this->_name;}

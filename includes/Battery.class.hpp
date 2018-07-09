@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Battery.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 16:38:42 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/08 16:38:43 by tadey            ###   ########.fr       */
+/*   Updated: 2018/07/08 20:14:39 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 class Battery : public IMonitorModule {
 
 private:
-	/* Data to store for RAM */
-	const std::string _name;
 	std::string battery;
 
 public:
@@ -35,16 +33,15 @@ public:
 	virtual ~Battery ();
 
 	bool	getUpdateRequired() const;
-
+	std::string getBattery() const;
 	Battery & operator=(Battery const &);
 
 	void initData();
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-	
+
 	std::string parseBatteryInfo();
-	std::string getName() const;
 };
 
 #endif

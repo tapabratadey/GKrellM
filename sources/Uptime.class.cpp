@@ -6,29 +6,29 @@
 /*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 15:19:20 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/08 18:39:45 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:12:50 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Uptime.class.hpp"
 
-Uptime::Uptime () : _name("UPTIME") {
+Uptime::Uptime () {
 	this->moduleName = "UptimeModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }
-Uptime::Uptime (Uptime const & src) {
+Uptime::Uptime (Uptime const & src) : IMonitorModule(src) {
 	*this = src;
 	return ;
 }
 Uptime::~Uptime () {}
 
-bool	Uptime::getUpdateRequired() const {	return this->isUpdateRequired;	}
+std::string	Uptime::getUptime() const {	return this->uptime;	}
 
 Uptime & Uptime::operator=(Uptime const & rhs) {
 	if (this != &rhs) {
-		this->isUpdateRequired = rhs.getUpdateRequired();
+		this->uptime = rhs.getUptime();
 	}
 	return *this;
 }
@@ -60,6 +60,3 @@ std::string Uptime::parseUptimeInfo(){
 	myfile.close();
 	return (temp);
 }
-
-std::string Uptime::getName() const
-{return this->_name;}
