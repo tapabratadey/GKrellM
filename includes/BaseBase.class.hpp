@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 16:34:43 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 17:52:36 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:42:57 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 #include "OSModule.class.hpp"
 #include "RAMModule.class.hpp"
 #include "Network.class.hpp"
+#include "Uptime.class.hpp"
+#include "Battery.class.hpp"
 #include <vector>
 #include <functional>
 

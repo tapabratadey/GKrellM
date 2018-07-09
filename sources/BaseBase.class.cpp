@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 16:34:45 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 17:52:39 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:43:06 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ BaseBase::BaseBase() {
 	initData();
 }
 
+BaseBase::BaseBase (BaseBase const & src) {
+	*this = src;
+	return ;
+}
+BaseBase::~BaseBase () {}
+
+BaseBase & BaseBase::operator=(BaseBase const & rhs) {
+	if (this != &rhs) {
+
+	}
+	return *this;
+}
+
 void BaseBase::initData() {
 	this->modules.push_back(new CPUModule());
 	this->modules.push_back(new DateTimeModule());
@@ -23,6 +36,8 @@ void BaseBase::initData() {
 	this->modules.push_back(new OSModule());
 	this->modules.push_back(new RAMModule());
 	this->modules.push_back(new Network());
+	this->modules.push_back(new Uptime());
+	this->modules.push_back(new Battery());
 }
 
 void BaseBase::updater(IMonitorModule * module) {

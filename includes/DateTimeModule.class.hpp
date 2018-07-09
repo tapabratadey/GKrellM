@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 04:17:11 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:52:45 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:37:01 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class DateTimeModule : public IMonitorModule {
 
 private:
 	const std::string _name;
+	struct tm * ptm;
 	std::string timestr;
 public:
 	DateTimeModule ();
