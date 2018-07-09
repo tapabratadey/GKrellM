@@ -1,7 +1,8 @@
 NAME= ft_gkrellm
 CC= clang++
-CFLAGS= -Wall -Wextra -Werror -std=c++98
-INC = -I./includes -I./interfaces
+CFLAGS= -Wall -Wextra -Werror -std=c++98 
+INC = -I./includes -I./interfaces -I./includes/minilibx/
+MINILIBX = -L includes/minilibx -lmlx -framework OpenGL -framework Appkit -L/usr/lib includes/minilibx/libmlx.a
 
 INTERPATH = ./interfaces/
 INTER = IMonitorModule.interface.hpp IMonitorDisplay.interface.hpp
@@ -11,7 +12,7 @@ INTERR = $(patsubst %, $(INTERPATH)%, $(INTER))
 CLSPATH = ./includes/
 CLS = 	GenericModule.class.hpp OSModule.class.hpp DateTimeModule.class.hpp \
 		CPUModule.class.hpp RAMModule.class.hpp Network.class.hpp \
-		Uptime.class.hpp Battery.class.hpp \
+		Uptime.class.hpp Battery.class.hpp Ncurses.class.hpp \
 		BaseBase.class.hpp
 
 CLSR = $(patsubst %, $(CLSPATH)%, $(CLS))
@@ -22,7 +23,7 @@ SRCPATH = sources/
 SRC  =	GenericModule.class.cpp OSModule.class.cpp DateTimeModule.class.cpp \
 		CPUModule.class.cpp RAMModule.class.cpp Network.class.cpp \
 		Uptime.class.cpp Battery.class.cpp \
-		BaseBase.class.cpp \
+		BaseBase.class.cpp Ncurses.class.cpp \
 		IMonitorModule.interface.cpp \
 		main.cpp
 
@@ -34,7 +35,7 @@ OBJECT = $(SRCS:.cpp=.o)
 	$(CC) $(CFLAGS) $(INC) -g -c -o $@ $<
 
 $(NAME): $(OBJECT)
-	@$(CC) $(CFLAGS) $(INC) $(OBJECT) -o $@
+	@$(CC) $(CFLAGS) $(INC) $(MINILIBX) $(OBJECT) -o $@ -lncurses
 	echo "Finished!"
 
 all: $(NAME)
