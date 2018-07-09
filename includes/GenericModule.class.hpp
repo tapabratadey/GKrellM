@@ -20,6 +20,7 @@ class GenericModule : public IMonitorModule {
 
 # define STR_LEN 1024
 private:
+	const std::string _name;
 	std::string name;
 	std::string hostname;
 
@@ -30,7 +31,7 @@ public:
 	virtual ~GenericModule ();
 
 	bool	getUpdateRequired() const;
-	std::string getName() const;
+	std::string getUserName() const;
 	std::string getHostname() const;
 
 	GenericModule & operator=(GenericModule const &);
@@ -42,6 +43,7 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
+	std::string getName() const;
 };
 
 #endif

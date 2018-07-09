@@ -60,3 +60,6 @@ std::string RAMModule::parseRAMInfoUsage(){
 	myfile.close();
 	return (temp);
 }
+
+std::string RAMModule::getName() const
+{return this->_name;}

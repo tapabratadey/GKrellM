@@ -44,6 +44,7 @@ public:
 	void dataRunner();
 	
 	std::string parseUptimeInfo();
+	std::string getName() const;
 };
 
 #endif

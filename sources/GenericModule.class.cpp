@@ -23,7 +23,7 @@ GenericModule::GenericModule (GenericModule const & src) {
 GenericModule::~GenericModule () {}
 
 bool	GenericModule::getUpdateRequired() const {	return this->isUpdateRequired;	}
-std::string GenericModule::getName() const {	return this->name;	}
+std::string GenericModule::getUserName() const {	return this->name;	}
 std::string GenericModule::getHostname() const {	return this->hostname;	}
 
 GenericModule & GenericModule::operator=(GenericModule const & rhs) {
@@ -67,3 +67,6 @@ std::map<std::string, std::string> GenericModule::getData() {
 	map["name"] = this->name;
 	return map;
 }
+
+std::string GenericModule::getName() const
+{return this->_name;}

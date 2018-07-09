@@ -20,34 +20,29 @@
 #include "CPUModule.class.hpp"
 #include "RAMModule.class.hpp"
 #include "Network.class.hpp"
-#include "Temperature.class.hpp"
 #include "Uptime.class.hpp"
+#include "Battery.class.hpp"
 
 int main() {
+	std::cout << std::endl;
 	GenericModule gen_mod;
 
 	std::map<std::string, std::string> map = gen_mod.getData();
-	std::cout << "Hostname " << map["hostname"] << '\n';
-	std::cout << "Name " << map["name"] << '\n';
+	std::cout << "Hostname: " << map["hostname"] << '\n';
+	std::cout << "Name: " << map["name"] << '\n';
 
 	OSModule os_mod;
 
 	std::map<std::string, std::string> mapos = os_mod.getData();
-	std::cout << "Architecture " << mapos["arhitecture"] << '\n';
-	std::cout << "Version " << mapos["version"] << '\n';
-	std::cout << "Release " << mapos["release"] << '\n';
-	std::cout << "Sysname " << mapos["sysname"] << '\n';
+	std::cout << "Architecture: " << mapos["arhitecture"] << '\n';
+	std::cout << "Version: " << mapos["version"] << '\n';
+	std::cout << "Release: " << mapos["release"] << '\n';
+	std::cout << "System name: " << mapos["sysname"] << '\n';
 
 	DateTimeModule time_mod;
 
 	std::map<std::string, std::string> mapotime = time_mod.getData();
-	std::cout << "Year " << mapotime["year"] << '\n';
-	std::cout << "Month " << mapotime["month"] << '\n';
-	std::cout << "Day " << mapotime["day"] << '\n';
-	std::cout << "Hour " << mapotime["hour"] << '\n';
-	std::cout << "Minute " << mapotime["minute"] << '\n';
-	std::cout << "Seconds " << mapotime["second"] << '\n';
-	std::cout << "Time qualify: " << mapotime["timestr"] << '\n';
+	std::cout << "Date/Time: " << mapotime["timestr"];
 
 	//CPU MODULE
 	CPUModule cpu_mod;
@@ -70,11 +65,17 @@ int main() {
 	std::cout << "Network throughput: " << mapnet["network"] << '\n';	
 
 
-	//Temperatur module
+	//Uptime module
 	Uptime uptime_mod;
 
 	std::map<std::string, std::string> mapuptime = uptime_mod.getData();
 	std::cout << "Uptime: " << mapuptime["uptime"] << '\n';
 
+	//Battery module
+	Battery battery_mod;
+
+	std::map<std::string, std::string> mapbattery = battery_mod.getData();
+	std::cout << "Battery: " << mapbattery["battery"] << '\n';
+	std::cout << std::endl;
 	return 0;
 }

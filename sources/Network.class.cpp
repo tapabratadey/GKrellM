@@ -61,3 +61,6 @@ std::string Network::parseNetworkUsage(){
     myfile.close();
     return (temp);
 }
+
+std::string Network::getName() const
+{return this->_name;}

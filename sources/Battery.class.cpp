@@ -1,64 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Uptime.class.cpp                                   :+:      :+:    :+:   */
+/*   Battery.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/08 15:19:20 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/08 15:19:22 by tadey            ###   ########.fr       */
+/*   Created: 2018/07/08 16:38:23 by tadey             #+#    #+#             */
+/*   Updated: 2018/07/08 16:38:25 by tadey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "Uptime.class.hpp"
+#include "Battery.class.hpp"
 
-Uptime::Uptime () : _name("UPTIME") {
+Battery::Battery () : _name("Battery") {
 	this->isUpdateRequired = false;
 	this->initData();
 }
-Uptime::Uptime (Uptime const & src) {
+Battery::Battery (Battery const & src) {
 	*this = src;
 	return ;
 }
-Uptime::~Uptime () {}
+Battery::~Battery () {}
 
-bool	Uptime::getUpdateRequired() const {	return this->isUpdateRequired;	}
+bool	Battery::getUpdateRequired() const {	return this->isUpdateRequired;	}
 
-Uptime & Uptime::operator=(Uptime const & rhs) {
+Battery & Battery::operator=(Battery const & rhs) {
 	if (this != &rhs) {
 		this->isUpdateRequired = rhs.getUpdateRequired();
 	}
 	return *this;
 }
 
-void Uptime::dataRunner() {
-		this->uptime = this->parseUptimeInfo();
+void Battery::dataRunner() {
+		this->battery = this->parseBatteryInfo();
 	return ;
 }
 
-void Uptime::initData() {
+void Battery::initData() {
 	this->dataRunner();
 }
-void Uptime::updateData() {
+void Battery::updateData() {
 	this->dataRunner();
 }
-std::map<std::string, std::string> Uptime::getData() {
+std::map<std::string, std::string> Battery::getData() {
 	std::map<std::string, std::string> map;
-	map["uptime"] = this->uptime;
+	map["battery"] = this->battery;
 	return map;
 }
 
-std::string Uptime::parseUptimeInfo(){
-	system("uptime > uptimeinfo");
+std::string Battery::parseBatteryInfo(){
+	system("pmset -g batt > batteryinfo");
 	std::string line;
 	std::string temp;
-	std::ifstream myfile ("uptimeinfo");
+	std::ifstream myfile ("batteryinfo");
 	while (getline (myfile, line))
 		temp = line;
+	size_t f = temp.find("Now drawing from ");
+		temp.replace(f, std::string("Now drawing from ").length(), "");
 	myfile.close();
 	return (temp);
 }
 
-std::string Uptime::getName() const
+std::string Battery::getName() const
 {return this->_name;}

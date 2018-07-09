@@ -19,6 +19,7 @@
 class OSModule : public IMonitorModule {
 
 private:
+	const std::string _name;
 	struct utsname uts;
 public:
 	OSModule ();
@@ -33,6 +34,8 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
+	std::string getName() const;
+
 };
 
 #endif

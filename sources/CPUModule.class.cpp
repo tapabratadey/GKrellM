@@ -85,3 +85,6 @@ std::string CPUModule::parseCPUInfoUsage(){
 	myfile.close();
 	return (temp);
 }
+
+std::string CPUModule::getName() const
+{return this->_name;}

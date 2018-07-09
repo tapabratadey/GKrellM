@@ -1,39 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DateTimeModule.class.hpp                           :+:      :+:    :+:   */
+/*   Battery.class.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/07 04:17:11 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:52:45 by maghayev         ###   ########.fr       */
+/*   Created: 2018/07/08 16:38:42 by tadey             #+#    #+#             */
+/*   Updated: 2018/07/08 16:38:43 by tadey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATETIMEMODULE_CLASS_HPP
-# define DATETIMEMODULE_CLASS_HPP
 
+#ifndef BATTERY_CLASS_HPP
+# define BATTERY_CLASS_HPP
+
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <sstream>
+#include <iostream>
+#include <fstream>
+#include <string>
 #include "IMonitorModule.interface.hpp"
-#include <ctime>
 
-class DateTimeModule : public IMonitorModule {
+class Battery : public IMonitorModule {
 
 private:
+	/* Data to store for RAM */
 	const std::string _name;
-	std::string timestr;
+	std::string battery;
+
 public:
-	DateTimeModule ();
-	DateTimeModule (DateTimeModule const &);
-	virtual ~DateTimeModule ();
+	Battery ();
+	Battery (Battery const &);
+	virtual ~Battery ();
 
 	bool	getUpdateRequired() const;
 
-	DateTimeModule & operator=(DateTimeModule const &);
+	Battery & operator=(Battery const &);
 
 	void initData();
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
+	
+	std::string parseBatteryInfo();
 	std::string getName() const;
 };
 

@@ -50,3 +50,6 @@ std::map<std::string, std::string> OSModule::getData() {
 	map["sysname"] = this->uts.sysname;
 	return map;
 }
+
+std::string OSModule::getName() const
+{return this->_name;}

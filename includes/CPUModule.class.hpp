@@ -43,6 +43,7 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
+	std::string getName() const;
 
 	std::string parseInfo(std::string str);
 	std::string parseInfo2(std::string str); 
