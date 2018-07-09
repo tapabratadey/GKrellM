@@ -6,35 +6,34 @@
 /*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 18:20:20 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/08 17:49:21 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:16:24 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Network.class.hpp"
 
-Network::Network () : _name("NETWORK USAGE") {
+Network::Network () {
 	this->moduleName = "NetworkModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }
-Network::Network (Network const & src) {
+Network::Network (Network const & src) : IMonitorModule(src) {
 	*this = src;
 	return ;
 }
 Network::~Network () {}
 
-bool	Network::getUpdateRequired() const {	return this->isUpdateRequired;	}
+std::string Network::getNetStat() const {	return this->netStat;	}
 
 Network & Network::operator=(Network const & rhs) {
-	if (this != &rhs) {
-		this->isUpdateRequired = rhs.getUpdateRequired();
-	}
+	if (this != &rhs)
+		this->netStat = rhs.getNetStat();
 	return *this;
 }
 
 void Network::dataRunner() {
-		this->net_stat = this->parseNetworkUsage();
+		this->netStat = this->parseNetworkUsage();
 	return ;
 }
 
@@ -46,7 +45,7 @@ void Network::updateData() {
 }
 std::map<std::string, std::string> Network::getData() {
 	std::map<std::string, std::string> map;
-	map["network"] = this->net_stat;
+	map["network"] = this->netStat;
 	return map;
 }
 
@@ -62,6 +61,3 @@ std::string Network::parseNetworkUsage(){
     myfile.close();
     return (temp);
 }
-
-std::string Network::getName() const
-{return this->_name;}

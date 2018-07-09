@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:31:20 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 17:36:42 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:16:40 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@ OSModule::OSModule () {
 	this->isUpdateRequired = false;
 	this->initData();
 }
-OSModule::OSModule (OSModule const & src) {
+OSModule::OSModule (OSModule const & src) : IMonitorModule(src) {
 	*this = src;
 	return ;
 }
 OSModule::~OSModule () {}
 
-bool	OSModule::getUpdateRequired() const {	return this->isUpdateRequired;	}
+struct utsname OSModule::getUts() const {	return this->uts;	}
 
 OSModule & OSModule::operator=(OSModule const & rhs) {
-	if (this != &rhs) {
-		this->isUpdateRequired = rhs.getUpdateRequired();
-	}
+	if (this != &rhs)
+		this->uts = rhs.getUts();
 	return *this;
 }
 
@@ -51,6 +50,3 @@ std::map<std::string, std::string> OSModule::getData() {
 	map["sysname"] = this->uts.sysname;
 	return map;
 }
-
-std::string OSModule::getName() const
-{return this->_name;}

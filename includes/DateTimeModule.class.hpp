@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 04:17:11 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:37:01 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:15:22 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 class DateTimeModule : public IMonitorModule {
 
 private:
-	const std::string _name;
 	struct tm * ptm;
 	std::string timestr;
 public:
@@ -28,6 +27,8 @@ public:
 	virtual ~DateTimeModule ();
 
 	bool	getUpdateRequired() const;
+	struct tm * getTmTime() const;
+	std::string getTimeStr() const;
 
 	DateTimeModule & operator=(DateTimeModule const &);
 
@@ -35,7 +36,6 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-	std::string getName() const;
 };
 
 #endif

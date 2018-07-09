@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Uptime.class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 15:22:51 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/08 15:22:52 by tadey            ###   ########.fr       */
+/*   Updated: 2018/07/08 20:12:35 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 class Uptime : public IMonitorModule {
 
 private:
-	/* Data to store for RAM */
-	const std::string _name;
 	std::string uptime;
 
 public:
@@ -34,7 +32,7 @@ public:
 	Uptime (Uptime const &);
 	virtual ~Uptime ();
 
-	bool	getUpdateRequired() const;
+	std::string	getUptime() const;
 
 	Uptime & operator=(Uptime const &);
 
@@ -42,9 +40,8 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-	
+
 	std::string parseUptimeInfo();
-	std::string getName() const;
 };
 
 #endif

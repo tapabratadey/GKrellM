@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 01:41:52 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:48:37 by bpierce          ###   ########.fr       */
+/*   Updated: 2018/07/08 20:06:29 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,24 @@
 
 class IMonitorModule {
 private:
-	IMonitorModule & operator=(IMonitorModule const &);
 protected:
 	std::string moduleName;
 	bool isUpdateRequired;
 public:
 	IMonitorModule ();
-	IMonitorModule (IMonitorModule const &) {}
+	IMonitorModule (IMonitorModule const &);
 	virtual ~IMonitorModule ();
 
-	std::string getModuleName();
+	bool getIsUpdateRequired() const;
+	std::string getModuleName() const;
+
+	IMonitorModule & operator=(IMonitorModule const &);
 
 	virtual void initData() = 0;
 	virtual void updateData() = 0;
 	virtual std::map<std::string, std::string> getData() = 0;
 	virtual void dataRunner() = 0;
-	virtual std::string getName() const = 0;
+
 	template <typename T>
 	std::string toString ( T Number )
 	{

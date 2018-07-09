@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   span.cpp                                           :+:      :+:    :+:   */
+/*   Ncurses.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: bpierce <bpierce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:59:44 by bpierce           #+#    #+#             */
-/*   Updated: 2018/07/06 12:59:51 by bpierce          ###   ########.fr       */
+/*   Updated: 2018/07/08 22:10:26 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void			Ncurses::screenInit(void)
 	noecho();
 	cbreak();
 	curs_set(0);
+	halfdelay(1);
 	start_color();
 	init_color(COLOR_BLUE, 215, 800, 1000);
 	init_color(COLOR_WHITE, 200, 200, 200);
@@ -108,8 +109,6 @@ void			Ncurses::screenInit(void)
 		wattron(_windows[moduleIterator->first], COLOR_PAIR((colorEnum++ % 4) + 1));
 		box(_windows[moduleIterator->first], 0, 0);
 	}
-	this->screenDraw();
-	this->screenRefresh();
 }
 
 void			Ncurses::screenDraw(void)
@@ -174,4 +173,3 @@ std::ostream &	operator<<(std::ostream & o, Ncurses const & m)
 	o << m.getThis();
 	return o;
 }
-

@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:31:20 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:34:01 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:17:15 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,18 @@ GenericModule::GenericModule () {
 	this->isUpdateRequired = false;
 	this->initData();
 }
-GenericModule::GenericModule (GenericModule const & src) {
+GenericModule::GenericModule (GenericModule const & src) : IMonitorModule(src) {
 	*this = src;
 	return ;
 }
 GenericModule::~GenericModule () {}
 
-bool	GenericModule::getUpdateRequired() const {	return this->isUpdateRequired;	}
 std::string GenericModule::getUserName() const {	return this->name;	}
 std::string GenericModule::getHostname() const {	return this->hostname;	}
 
 GenericModule & GenericModule::operator=(GenericModule const & rhs) {
 	if (this != &rhs) {
-		this->isUpdateRequired = rhs.getUpdateRequired();
-		this->name = rhs.getName();
+		this->name = rhs.getUserName();
 		this->hostname = rhs.getHostname();
 	}
 	return *this;
@@ -118,5 +116,3 @@ std::string GenericModule::parseSerialInfo(){
 	return (temp);
 }
 
-std::string GenericModule::getName() const
-{return this->_name;}

@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:03:47 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:34:03 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:17:10 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class GenericModule : public IMonitorModule {
 
 # define STR_LEN 1024
 private:
-	const std::string _name;
 	std::string name;
 	std::string hostname;
 	std::string model;
@@ -47,8 +46,6 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-	std::string getName() const;
-
 };
 
 #endif
