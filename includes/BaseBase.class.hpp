@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DateTimeModule.class.hpp                           :+:      :+:    :+:   */
+/*   BaseBase.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/07 04:17:11 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:52:45 by maghayev         ###   ########.fr       */
+/*   Created: 2018/07/08 16:34:43 by maghayev          #+#    #+#             */
+/*   Updated: 2018/07/08 17:30:37 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATETIMEMODULE_CLASS_HPP
-# define DATETIMEMODULE_CLASS_HPP
+#ifndef BASEBASE_CLASS_HPP
+# define BASEBASE_CLASS_HPP
 
 #include "IMonitorModule.interface.hpp"
-#include <ctime>
+#include <vector>
+#include <functional>
 
-class DateTimeModule : public IMonitorModule {
-
+class BaseBase {
 private:
-	const std::string _name;
-	std::string timestr;
+	std::vector<IMonitorModule*> modules;
+	std::map<std::string, std::map<std::string, std::string> > data;
+	void updater(IMonitorModule * module);
+	void dataGetter(IMonitorModule * module);
+
 public:
-	DateTimeModule ();
-	DateTimeModule (DateTimeModule const &);
-	virtual ~DateTimeModule ();
+	BaseBase ();
+	BaseBase (BaseBase const &);
+	virtual ~BaseBase ();
 
-	bool	getUpdateRequired() const;
-
-	DateTimeModule & operator=(DateTimeModule const &);
+	BaseBase & operator=(BaseBase const &);
 
 	void initData();
 	void updateData();
-	std::map<std::string, std::string> getData();
-	void dataRunner();
-	std::string getName() const;
+	std::map<std::string, std::map<std::string, std::string> > getData();
 };
 
 #endif

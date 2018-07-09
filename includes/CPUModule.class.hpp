@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 01:55:53 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 14:59:13 by bpierce          ###   ########.fr       */
+/*   Updated: 2018/07/08 17:38:34 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
+	std::string getName() const;
 
 	std::string parseInfo(std::string str);
-	std::string parseInfo2(std::string str); 
+	std::string parseInfo2(std::string str);
 	std::string parseCPUInfoUsage();
 };
 

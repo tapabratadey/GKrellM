@@ -6,13 +6,14 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:31:20 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 02:59:34 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:36:16 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GenericModule.class.hpp"
 
 GenericModule::GenericModule () {
+	this->moduleName = "GenericModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }
@@ -23,7 +24,7 @@ GenericModule::GenericModule (GenericModule const & src) {
 GenericModule::~GenericModule () {}
 
 bool	GenericModule::getUpdateRequired() const {	return this->isUpdateRequired;	}
-std::string GenericModule::getName() const {	return this->name;	}
+std::string GenericModule::getUserName() const {	return this->name;	}
 std::string GenericModule::getHostname() const {	return this->hostname;	}
 
 GenericModule & GenericModule::operator=(GenericModule const & rhs) {
@@ -67,3 +68,6 @@ std::map<std::string, std::string> GenericModule::getData() {
 	map["name"] = this->name;
 	return map;
 }
+
+std::string GenericModule::getName() const
+{return this->_name;}

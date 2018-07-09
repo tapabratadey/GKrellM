@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RAMModule.class.cpp                                 :+:      :+:    :+:  */
+/*   RAMModule.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:31:20 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:29:56 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:49:24 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RAMModule.class.hpp"
 
 RAMModule::RAMModule () : _name("RAM USAGE") {
+	this->moduleName = "RAMModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }
@@ -60,3 +61,6 @@ std::string RAMModule::parseRAMInfoUsage(){
 	myfile.close();
 	return (temp);
 }
+
+std::string RAMModule::getName() const
+{return this->_name;}

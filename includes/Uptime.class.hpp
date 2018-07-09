@@ -1,39 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DateTimeModule.class.hpp                           :+:      :+:    :+:   */
+/*   Uptime.class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/07 04:17:11 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:52:45 by maghayev         ###   ########.fr       */
+/*   Created: 2018/07/08 15:22:51 by tadey             #+#    #+#             */
+/*   Updated: 2018/07/08 15:22:52 by tadey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATETIMEMODULE_CLASS_HPP
-# define DATETIMEMODULE_CLASS_HPP
 
+#ifndef UPTIME_CLASS_HPP
+# define UPTIME_CLASS_HPP
+
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <sstream>
+#include <iostream>
+#include <fstream>
+#include <string>
 #include "IMonitorModule.interface.hpp"
-#include <ctime>
 
-class DateTimeModule : public IMonitorModule {
+class Uptime : public IMonitorModule {
 
 private:
+	/* Data to store for RAM */
 	const std::string _name;
-	std::string timestr;
+	std::string uptime;
+
 public:
-	DateTimeModule ();
-	DateTimeModule (DateTimeModule const &);
-	virtual ~DateTimeModule ();
+	Uptime ();
+	Uptime (Uptime const &);
+	virtual ~Uptime ();
 
 	bool	getUpdateRequired() const;
 
-	DateTimeModule & operator=(DateTimeModule const &);
+	Uptime & operator=(Uptime const &);
 
 	void initData();
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
+	
+	std::string parseUptimeInfo();
 	std::string getName() const;
 };
 
