@@ -38,6 +38,10 @@ int main() {
 
 	std::cout << "Hostname " << map["GenericModule"]["hostname"] << '\n';
 	std::cout << "Name " << map["GenericModule"]["name"] << '\n';
+	std::cout << "Model " << map["GenericModule"]["model"] << '\n';
+	std::cout << "Memory " << map["GenericModule"]["memory"] << '\n';
+	std::cout << "Serial " << map["GenericModule"]["serial"] << '\n';
+	
 
 	std::cout << "Architecture " << map["OSModule"]["arhitecture"] << '\n';
 	std::cout << "Version " << map["OSModule"]["version"] << '\n';

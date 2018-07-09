@@ -95,12 +95,16 @@ void			Ncurses::screenInit(void)
 	init_pair(ORANGE_BAR, COLOR_YELLOW, COLOR_YELLOW);
 	this->baseModule = new BaseBase();
 
+	int counter = 0;
 	// Initializing the windows for each module item
 	myMap = this->baseModule->getData();
 	for (std::map<std::string, std::map<std::string, std::string> >::iterator moduleIterator = myMap.begin() ; moduleIterator != myMap.end() ; moduleIterator++) {
+		_windows[moduleIterator->first] = newwin(10, 110, ((counter++ * 10)) + 1, 0 );
+		#if 0
 		_windows[moduleIterator->first] = newwin(6, 70,
 				((_windows.size() % 5) * (NCURSES_WIN_HEIGHT / 5)) + 5,
 				((_windows.size() / 5) * (NCURSES_WIN_WIDTH / 5)) + 20);
+		#endif
 		wattron(_windows[moduleIterator->first], COLOR_PAIR((colorEnum++ % 4) + 1));
 		box(_windows[moduleIterator->first], 0, 0);
 	}

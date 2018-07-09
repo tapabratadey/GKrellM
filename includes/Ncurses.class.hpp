@@ -22,8 +22,8 @@
 
 # include "IMonitorModule.interface.hpp"
 # include "IMonitorDisplay.interface.hpp"
-# define NCURSES_WIN_HEIGHT 40
-# define NCURSES_WIN_WIDTH 220
+# define NCURSES_WIN_HEIGHT 70
+# define NCURSES_WIN_WIDTH 275
 
 enum
 {
