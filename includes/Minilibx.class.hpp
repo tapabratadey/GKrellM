@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Iminilibx.class.hpp                                :+:      :+:    :+:   */
+/*   Minilibx.class.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpierce <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: bpierce <bpierce@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 21:10:16 by bpierce           #+#    #+#             */
-/*   Updated: 2018/07/06 21:10:19 by bpierce          ###   ########.fr       */
+/*   Updated: 2018/07/08 22:41:02 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ class Minilibx : public IMonitorDisplay
 
 std::ostream &	operator<<(std::ostream & o, Minilibx const & m);
 
-// int				forever_loop(Minilibx *m);
+int				forever_loop(Minilibx *m);
 int				exit_window(void);
 int				key_press(int keycode, Minilibx *m);
 

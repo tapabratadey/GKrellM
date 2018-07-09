@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:53:03 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 22:27:27 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 22:42:39 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int main(int argc, char const *argv[]) {
 	std::string minilibx = "gui";
 	argc--;
 	argv++;
-	if (ncurse.compare(*argv))
+	if (!ncurse.compare(*argv))
 		initNCurses();
-	if (minilibx.compare(*argv))
+	if (!minilibx.compare(*argv))
 		initMiniLibX();
 	return 0;
 }
