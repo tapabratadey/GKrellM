@@ -88,11 +88,8 @@ void					Graph::fillDataAll(void)
 		return ;
 	for (int x = _width - 1 ; x >= 0 ; x--) {
 		val = remap_value(*i, _min, _max, 1, 100);
-		// std::cout << val << std::endl;
 		for (int y = _height - 1 ; y >= 0 ; y--) {
 			this->pixelFill(x, y, y >= val ?  0 : 14864159);
-			std::cout << "y: " << y << ", x: " << x << ", val: " << val;
-			std::cout << (y <= val ? " purple" : " yellow") << std::endl;
 		}
 		if (++i == _history.end())
 			break ;
