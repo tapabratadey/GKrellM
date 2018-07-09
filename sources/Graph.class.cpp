@@ -90,7 +90,7 @@ void					Graph::fillDataAll(void)
 		val = remap_value(*i, _min, _max, 1, 100);
 		// std::cout << val << std::endl;
 		for (int y = _height - 1 ; y >= 0 ; y--) {
-			this->pixelFill(x, y, y >= val ?  14815962 : 14864159);
+			this->pixelFill(x, y, y >= val ?  0 : 14864159);
 			std::cout << "y: " << y << ", x: " << x << ", val: " << val;
 			std::cout << (y <= val ? " purple" : " yellow") << std::endl;
 		}

@@ -33,7 +33,7 @@ extern "C"
 #endif
 
 # define MINILIBX_WIN_WIDTH 800
-# define MINILIBX_WIN_HEIGHT 800
+# define MINILIBX_WIN_HEIGHT 1600
 enum
 {
 	C_RED = 14830891,
@@ -59,13 +59,14 @@ class Minilibx : public IMonitorDisplay
 		std::map<std::string, Graph *>		getGraphs(void) const;
 		BaseBase							*getBaseModule(void) const;
 
-		void			setMlx(void	*mlx);
-		void			setWin(void *win);
+		void								setMlx(void	*mlx);
+		void								setWin(void *win);
 
 		// Member Function
 		void			screenInit(void);
 		void			screenDraw(void);
 		void			screenRefresh(void);
+		void			mlxLoop(void);
 
 	protected:
 		class MinilibxException : public std::exception
