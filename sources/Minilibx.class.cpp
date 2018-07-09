@@ -20,7 +20,7 @@ Minilibx::Minilibx(void) : IMonitorDisplay()
 	screenInit();
 	// Initializing the keyhooks
 	mlx_do_key_autorepeatoff(_mlx);
-	// mlx_loop_hook(_mlx, reinterpret_cast<int (*)()>(forever_loop), this);
+	mlx_loop_hook(_mlx, reinterpret_cast<int (*)()>(forever_loop), this);
 	// mlx_hook(_mlx, 17, 0, reinterpret_cast<int (*)()>(exit_window), this);
 	mlx_key_hook(_win, reinterpret_cast<int (*)()>(key_press), this);
 	// std::cout << "Constructor Called" << std::endl;
@@ -38,6 +38,8 @@ Minilibx & Minilibx::operator=(Minilibx const & m)
 	if (this != &m)
 	{
 		this->setMlx(m.getMlx());
+		if (_win)
+			mlx_destroy_window(_mlx, _win);
 		this->setWin(m.getWin());
 	}
 	return *this;
@@ -95,8 +97,6 @@ void			Minilibx::screenInit(void)
 {
 	std::map<std::string, std::map<std::string, std::string> >	myMap;
 	std::string													name = "Fantastic Mr. Monitor";
-	int															color_array[4] = {C_RED, C_GREEN, C_BLUE, C_ORANGE};
-	int															i = 0;
 
 	_mlx = mlx_init();
 	if (!_mlx)
@@ -111,7 +111,7 @@ void			Minilibx::screenInit(void)
 	myMap = this->baseModule->getData();
 	for (std::map<std::string, std::map<std::string, std::string> >::iterator moduleIterator = myMap.begin() ; moduleIterator != myMap.end() ; moduleIterator++) {
 		_graphs[moduleIterator->first] = new Graph(_mlx);
-		_graphs[moduleIterator->first]->backgroundFill(color_array[i++ % 4]); // a green color
+		_graphs[moduleIterator->first]->backgroundFill(0); // a green color
 		_graphs[moduleIterator->first]->setX(((_graphs.size() / 5) * (MINILIBX_WIN_WIDTH / 5)) + 20);
 		_graphs[moduleIterator->first]->setY(((_graphs.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 20);
 	}
@@ -187,20 +187,21 @@ std::ostream &	operator<<(std::ostream & o, Minilibx const & m)
 	return o;
 }
 
+void			Minilibx::mlxLoop(void)
+{
+	mlx_loop(this->_mlx);
+}
 
 
-// Other
-
-// int				forever_loop(Minilibx *m)
-// {
-// 	m->screenDraw();
-// 	// m->screenRefresh();
-// 	return 0;
-// }
+int				forever_loop(Minilibx *m)
+{
+	m->screenDraw();
+	m->screenRefresh();
+	return 0;
+}
 
 int				exit_window(void)
 {
-	// m->~Minilibx();
 	exit(0);
 	return 0;
 }
