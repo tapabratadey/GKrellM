@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RAMModule.class.hpp                                 :+:      :+:    :+:  */
+/*   RAMModule.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 01:55:53 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:40:12 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:18:53 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 class RAMModule : public IMonitorModule {
 
 private:
-	/* Data to store for RAM */
-	const std::string _name;
 	std::string ramUsage;
 
 public:
@@ -33,7 +31,7 @@ public:
 	RAMModule (RAMModule const &);
 	virtual ~RAMModule ();
 
-	bool	getUpdateRequired() const;
+	std::string	getRamUsage() const;
 
 	RAMModule & operator=(RAMModule const &);
 
@@ -41,8 +39,7 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-	std::string getName() const;
-	
+
 	std::string parseRAMInfoUsage();
 };
 

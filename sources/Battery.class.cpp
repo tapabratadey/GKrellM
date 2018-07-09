@@ -6,29 +6,29 @@
 /*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 16:38:23 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/08 18:39:38 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:14:36 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "Battery.class.hpp"
 
-Battery::Battery () : _name("Battery") {
+Battery::Battery () {
 	this->moduleName = "BatteryModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }
-Battery::Battery (Battery const & src) {
+Battery::Battery (Battery const & src) : IMonitorModule(src) {
 	*this = src;
 	return ;
 }
 Battery::~Battery () {}
 
-bool	Battery::getUpdateRequired() const {	return this->isUpdateRequired;	}
+std::string	Battery::getBattery() 			const {	return this->battery;	}
 
 Battery & Battery::operator=(Battery const & rhs) {
 	if (this != &rhs) {
-		this->isUpdateRequired = rhs.getUpdateRequired();
+		this->battery = rhs.getBattery();
 	}
 	return *this;
 }
@@ -62,6 +62,3 @@ std::string Battery::parseBatteryInfo(){
 	myfile.close();
 	return (temp);
 }
-
-std::string Battery::getName() const
-{return this->_name;}

@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 01:55:53 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:40:12 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:16:33 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 class OSModule : public IMonitorModule {
 
 private:
-	const std::string _name;
 	struct utsname uts;
 public:
 	OSModule ();
 	OSModule (OSModule const &);
 	virtual ~OSModule ();
 
-	bool	getUpdateRequired() const;
+	struct utsname getUts() const;
 
 	OSModule & operator=(OSModule const &);
 
@@ -34,7 +33,6 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-	std::string getName() const;
 
 };
 
