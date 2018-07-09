@@ -112,10 +112,9 @@ void			Minilibx::screenInit(void)
 	for (std::map<std::string, std::map<std::string, std::string> >::iterator moduleIterator = myMap.begin() ; moduleIterator != myMap.end() ; moduleIterator++) {
 		_graphs[moduleIterator->first] = new Graph(_mlx);
 		_graphs[moduleIterator->first]->backgroundFill(0); // a green color
-		_graphs[moduleIterator->first]->setX(((_graphs.size() / 5) * (MINILIBX_WIN_WIDTH / 5)) + 20);
-		_graphs[moduleIterator->first]->setY(((_graphs.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 25);
+		_graphs[moduleIterator->first]->setX(((_graphs.size() / 3) * (MINILIBX_WIN_WIDTH / 3)) + 20);
+		_graphs[moduleIterator->first]->setY(((_graphs.size() % 3) * (MINILIBX_WIN_HEIGHT / 3)) + 25);
 	}
-	std::cout << "dslkfjlakds" << std::endl;
 }
 
 void			Minilibx::screenDraw(void)

@@ -32,8 +32,8 @@ extern "C"
 }
 #endif
 
-# define MINILIBX_WIN_WIDTH 800
-# define MINILIBX_WIN_HEIGHT 1600
+# define MINILIBX_WIN_WIDTH 2000
+# define MINILIBX_WIN_HEIGHT 800
 enum
 {
 	C_RED = 14830891,
