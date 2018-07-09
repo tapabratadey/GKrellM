@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 16:34:43 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:42:57 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:17:37 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ public:
 	BaseBase ();
 	BaseBase (BaseBase const &);
 	virtual ~BaseBase ();
+
+	std::map<std::string, std::map<std::string, std::string> > getDataVar() const;
+	std::vector<IMonitorModule*> getModulesVar() const;
 
 	BaseBase & operator=(BaseBase const &);
 
