@@ -65,7 +65,7 @@ int main() {
 	std::cout << "Battery: " << map["BatteryModule"]["battery"] << '\n';
 	std::cout << std::endl;
 
-	Ncurses		n;
+	Minilibx	n;
 
 	while (1)
 	{

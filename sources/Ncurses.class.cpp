@@ -104,8 +104,6 @@ void			Ncurses::screenInit(void)
 		wattron(_windows[moduleIterator->first], COLOR_PAIR((colorEnum++ % 4) + 1));
 		box(_windows[moduleIterator->first], 0, 0);
 	}
-	this->screenDraw();
-	this->screenRefresh();
 }
 
 void			Ncurses::screenDraw(void)

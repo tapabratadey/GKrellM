@@ -31,10 +31,10 @@ extern "C"
 class Graph : public MlxImage
 {
 	private:
-		std::deque<int>		_history;
+		std::deque<float>		_history;
 		unsigned long const	_maxHistorySize;
-		int					_min;
-		int					_max;
+		float					_min;
+		float					_max;
 
 	public:
 		Graph(void);
@@ -44,18 +44,18 @@ class Graph : public MlxImage
 		Graph & operator=(Graph const & g);
 
 
-		std::deque<int>	const & getHistory(void) const;
+		std::deque<float>	const & getHistory(void) const;
 		unsigned long			getMaxHistorySize(void) const;
-		int						getMin(void) const;
-		int						getMax(void) const;
+		float					getMin(void) const;
+		float					getMax(void) const;
 
-		void					addToHistory(int n);
+		void					addToHistory(float n);
 		void					fillDataAll(void);
 
 };
 
 std::ostream &	operator<<(std::ostream & o, Graph const & g);
 
-int		remap_value(int value, int low1, int high1, int low2, int high2);
+float		remap_value(float value, float low1, float high1, float low2, float high2);
 
 #endif
