@@ -49,25 +49,25 @@ Graph::~Graph(void)
 }
 
 
-std::deque<int>	const & Graph::getHistory(void) const
+std::deque<float>	const & Graph::getHistory(void) const
 { return _history; }
 
 unsigned long			Graph::getMaxHistorySize(void) const
 { return _maxHistorySize; }
 
-int						Graph::getMin(void) const
+float						Graph::getMin(void) const
 { return _min; }
 
-int						Graph::getMax(void) const
+float						Graph::getMax(void) const
 { return _max; }
 
 
 
-void					Graph::addToHistory(int n)
+void					Graph::addToHistory(float n)
 {
 	if (_history.size() == _maxHistorySize)
-		_history.pop_front();
-	_history.push_back(n);
+		_history.pop_back();
+	_history.push_front(n);
 	if (!_min && !_max)
 	{
 		_min = n;
@@ -80,17 +80,19 @@ void					Graph::addToHistory(int n)
 void					Graph::fillDataAll(void)
 {
 
-	std::deque<int>::iterator	i;
-	int							val;
+	std::deque<float>::iterator	i;
+	float						val;
 
 	i = _history.begin();
 	if (i == _history.end())
 		return ;
-	for (int x = _width ; x > 0 ; x--) {
+	for (int x = _width - 1 ; x >= 0 ; x--) {
 		val = remap_value(*i, _min, _max, 1, 100);
-		std::cout << val << std::endl;
-		for (int y = _height ; y > 0 ; y--) {
-			this->pixelFill(x, y, y < val ? 2132127 : 45824);
+		// std::cout << val << std::endl;
+		for (int y = _height - 1 ; y >= 0 ; y--) {
+			this->pixelFill(x, y, y >= val ?  14815962 : 14864159);
+			std::cout << "y: " << y << ", x: " << x << ", val: " << val;
+			std::cout << (y <= val ? " purple" : " yellow") << std::endl;
 		}
 		if (++i == _history.end())
 			break ;
@@ -103,7 +105,7 @@ std::ostream &	operator<<(std::ostream & o, Graph const & g)
 	return o;
 }
 
-int		remap_value(int value, int low1, int high1, int low2, int high2)
+float		remap_value(float value, float low1, float high1, float low2, float high2)
 {
 	return (low2 + (value - low1) * (high2 - low2) / (high1 - low1));
 }

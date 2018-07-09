@@ -107,7 +107,7 @@ void			Minilibx::screenInit(void)
 		const_cast<char *>(name.c_str()));
 	if (!_win)
 		throw Minilibx::MinilibxException("Failed to create mlx window");
-	std::cout << "dslkfjlakds" << std::endl;
+	this->baseModule = new BaseBase();
 	myMap = this->baseModule->getData();
 	for (std::map<std::string, std::map<std::string, std::string> >::iterator moduleIterator = myMap.begin() ; moduleIterator != myMap.end() ; moduleIterator++) {
 		_graphs[moduleIterator->first] = new Graph(_mlx);
@@ -133,12 +133,18 @@ void			Minilibx::screenDraw(void)
 		startY = graph->getY();
 		mlx_string_put(_mlx, _win, graph->getX(), startY, color_array[color_iterator % 4], const_cast<char *>(dataIterator->first.c_str()));
 		for (std::map<std::string, std::string>::iterator moduleItemIterator = dataIterator->second.begin() ; moduleItemIterator != dataIterator->second.end() ; moduleItemIterator++) {
-			startY += 10;
-			printString = moduleItemIterator->first + " + " + moduleItemIterator->second;
+			startY += 13;
+			printString = moduleItemIterator->first + " | " + moduleItemIterator->second;
 			mlx_string_put(_mlx, _win, graph->getX(), startY, color_array[color_iterator % 4], const_cast<char *>(printString.c_str()));
+			// If a graph needs to be drawn do it here
+			if (moduleItemIterator->first == "cpuUsage")
+			{
+				graph->addToHistory(std::stof(moduleItemIterator->second));
+				graph->fillDataAll();
+				mlx_put_image_to_window(_mlx, _win, graph->getImg(), graph->getX(), startY + 30);
+				startY += 50 + MAX_GRAPH_HISTORY_SIZE;
+			}
 		}
-		// If a graph needs to be drawn do it here
-		//mlx_put_image_to_window(_mlx, _win, graph.getImg(), graph.getX(), startY + 10);
 		color_iterator += 1;
 	}
 }
