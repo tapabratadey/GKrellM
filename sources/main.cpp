@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:53:03 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:47:58 by bpierce          ###   ########.fr       */
+/*   Updated: 2018/07/08 19:10:29 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "BaseBase.class.hpp"
 #include "Minilibx.class.hpp"
 #include "Graph.class.hpp"
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -50,9 +51,9 @@ int main() {
 	std::cout << "Seconds " << map["DateTimeModule"]["second"] << '\n';
 	std::cout << "Time qualify: " << map["DateTimeModule"]["timestr"] << '\n';
 
-	std::cout << "Brand Name: " << map["CPUModel"]["brandName"] << '\n';
-	std::cout << "Core Count: " << map["CPUModel"]["coreCount"] << '\n';
-	std::cout << "CPU usage: " << map["CPUModel"]["cpuUsage"] << '\n';
+	std::cout << "Brand Name: " << map["CPUModule"]["brandName"] << '\n';
+	std::cout << "Core Count: " << map["CPUModule"]["coreCount"] << '\n';
+	std::cout << "CPU usage: " << map["CPUModule"]["cpuUsage"] << '\n';
 
 	std::cout << "RAM usage: " << map["RAMModule"]["ramUsage"] << '\n';
 
