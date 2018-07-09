@@ -40,7 +40,6 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-
     std::string parseNetworkUsage();
 };
 

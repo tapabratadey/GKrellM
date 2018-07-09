@@ -31,12 +31,10 @@ extern "C"
 #endif
 
 void initNCurses() {
-	Ncurses		n;
-	while (1) {
-		n.screenDraw();
-		n.screenRefresh();
-	}
+	Ncurses	*n = new Ncurses;
+	n->starter();
 }
+
 void initMiniLibX() {
 	Minilibx	n;
 	while (1)

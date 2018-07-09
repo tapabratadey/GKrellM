@@ -62,6 +62,7 @@ class Ncurses : public IMonitorDisplay
 		void			screenDraw(IMonitorModule & im);
 		void			screenRefresh(void);
 		void			displayData(IMonitorModule & im);
+		void 			starter();
 
 	protected:
 		class NcursesException : public std::exception

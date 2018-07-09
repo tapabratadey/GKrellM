@@ -39,6 +39,7 @@ Ncurses & Ncurses::operator=(Ncurses const & m)
 
 Ncurses::~Ncurses(void)
 {
+	std::cout << "destructor" << std::endl;
 	std::map<std::string, WINDOW *>::iterator	windowDestroyer;
 	WINDOW										*window;
 	for (windowDestroyer = _windows.begin() ; windowDestroyer != _windows.end() ; windowDestroyer++) {
@@ -47,6 +48,7 @@ Ncurses::~Ncurses(void)
 		delwin(window);
 	}
 	delete this->baseModule;
+	endwin();
 	return ;
 }
 
@@ -73,11 +75,11 @@ void			Ncurses::screenInit(void)
 	std::map<std::string, std::map<std::string, std::string> >	myMap;
 	int															colorEnum = 0;
 
-	initscr();
-	noecho();
-	cbreak();
-	curs_set(0);
+	initscr();	
 	halfdelay(1);
+	noecho();
+	// cbreak();
+	curs_set(0);
 	start_color();
 	init_color(COLOR_BLUE, 215, 800, 1000);
 	init_color(COLOR_WHITE, 200, 200, 200);
@@ -136,6 +138,9 @@ void			Ncurses::screenRefresh(void)
 {
 	std::map<std::string, WINDOW *>	windows = this->getWindows();
 
+	// int get = getch();
+	// if (get == 27)
+	// 	delete this;
 	for (std::map<std::string, WINDOW *>::iterator winIter = windows.begin() ; winIter != windows.end() ; winIter++) {
 		wrefresh(winIter->second);
 	}
@@ -165,7 +170,12 @@ Ncurses::NcursesException & Ncurses::NcursesException::operator=(NcursesExceptio
 const char *Ncurses::NcursesException::what(void) const throw()
 { return _what.c_str(); }
 
-
+void Ncurses::starter() {
+	while (1) {
+		this->screenDraw();
+		this->screenRefresh();
+	}
+}
 
 // Operator Overloads
 std::ostream &	operator<<(std::ostream & o, Ncurses const & m)
