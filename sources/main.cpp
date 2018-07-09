@@ -79,5 +79,7 @@ int main() {
 	std::map<std::string, std::string> mapbattery = battery_mod.getData();
 	std::cout << "Battery: " << mapbattery["battery"] << '\n';
 	std::cout << std::endl;
+
+	
 	return 0;
 }

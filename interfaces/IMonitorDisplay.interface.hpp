@@ -13,6 +13,8 @@
 #ifndef IMONITORDISPLAY_INTERFACE_HPP
 # define IMONITORDISPLAY_INTERFACE_HPP
 
+# include "BaseBase.class.hpp"
+
 class IMonitorDisplay {
 
 private:
@@ -31,7 +33,7 @@ public:
 	virtual void screenDraw() = 0;
 	virtual void screenRefresh() = 0;
 
-	virtual void getBaseModule() = 0;
+	virtual BaseBase *getBaseModule() = 0;
 };
 
 
