@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Network.class.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 18:20:20 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/07 18:20:22 by tadey            ###   ########.fr       */
+/*   Updated: 2018/07/08 17:36:34 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Network.class.hpp"
 
 Network::Network () : _name("NETWORK USAGE") {
+	this->moduleName = "NetworkModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }

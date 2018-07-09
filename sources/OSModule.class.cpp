@@ -6,13 +6,14 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:31:20 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:29:56 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:36:42 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "OSModule.class.hpp"
 
 OSModule::OSModule () {
+	this->moduleName = "OSModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }

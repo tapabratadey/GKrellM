@@ -6,13 +6,14 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:31:20 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 02:59:34 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:36:16 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GenericModule.class.hpp"
 
 GenericModule::GenericModule () {
+	this->moduleName = "GenericModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }

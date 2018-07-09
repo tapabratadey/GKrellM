@@ -6,13 +6,14 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 04:30:11 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:53:42 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:36:06 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DateTimeModule.class.hpp"
 
 DateTimeModule::DateTimeModule () {
+	this->moduleName = "DateTimeModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }

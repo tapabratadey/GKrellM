@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CPUModule.class.cpp                                 :+:      :+:    :+:  */
+/*   CPUModule.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:31:20 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 04:29:56 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:35:52 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 CPUModule::CPUModule () : _name("CPU USAGE")
 {
+	this->moduleName = "CPUModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }

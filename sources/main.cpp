@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:53:03 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/07 15:05:45 by tadey            ###   ########.fr       */
+/*   Updated: 2018/07/08 17:42:10 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,37 @@
 #include <sys/sysctl.h>
 #include <sys/utsname.h>
 
-#include "GenericModule.class.hpp"
-#include "OSModule.class.hpp"
-#include "DateTimeModule.class.hpp"
-#include "CPUModule.class.hpp"
-#include "RAMModule.class.hpp"
-#include "Network.class.hpp"
+#include "BaseBase.class.hpp"
 
 
 int main() {
-	GenericModule gen_mod;
+	BaseBase base;
 
-	std::map<std::string, std::string> map = gen_mod.getData();
-	std::cout << "Hostname " << map["hostname"] << '\n';
-	std::cout << "Name " << map["name"] << '\n';
+	std::map<std::string, std::map<std::string, std::string> > map = base.getData();
 
-	OSModule os_mod;
+	std::cout << "Hostname " << map["CPUModule"]["hostname"] << '\n';
+	std::cout << "Name " << map["CPUModule"]["name"] << '\n';
 
-	std::map<std::string, std::string> mapos = os_mod.getData();
-	std::cout << "Architecture " << mapos["arhitecture"] << '\n';
-	std::cout << "Version " << mapos["version"] << '\n';
-	std::cout << "Release " << mapos["release"] << '\n';
-	std::cout << "Sysname " << mapos["sysname"] << '\n';
+	std::cout << "Architecture " << map["OSModule"]["arhitecture"] << '\n';
+	std::cout << "Version " << map["OSModule"]["version"] << '\n';
+	std::cout << "Release " << map["OSModule"]["release"] << '\n';
+	std::cout << "Sysname " << map["OSModule"]["sysname"] << '\n';
 
-	DateTimeModule time_mod;
+	std::cout << "Year " << map["DateTimeModule"]["year"] << '\n';
+	std::cout << "Month " << map["DateTimeModule"]["month"] << '\n';
+	std::cout << "Day " << map["DateTimeModule"]["day"] << '\n';
+	std::cout << "Hour " << map["DateTimeModule"]["hour"] << '\n';
+	std::cout << "Minute " << map["DateTimeModule"]["minute"] << '\n';
+	std::cout << "Seconds " << map["DateTimeModule"]["second"] << '\n';
+	std::cout << "Time qualify: " << map["DateTimeModule"]["timestr"] << '\n';
 
-	std::map<std::string, std::string> mapotime = time_mod.getData();
-	std::cout << "Year " << mapotime["year"] << '\n';
-	std::cout << "Month " << mapotime["month"] << '\n';
-	std::cout << "Day " << mapotime["day"] << '\n';
-	std::cout << "Hour " << mapotime["hour"] << '\n';
-	std::cout << "Minute " << mapotime["minute"] << '\n';
-	std::cout << "Seconds " << mapotime["second"] << '\n';
-	std::cout << "Time qualify: " << mapotime["timestr"] << '\n';
+	std::cout << "Brand Name: " << map["CPUModel"]["brandName"] << '\n';
+	std::cout << "Core Count: " << map["CPUModel"]["coreCount"] << '\n';
+	std::cout << "CPU usage: " << map["CPUModel"]["cpuUsage"] << '\n';
 
-	//CPU MODULE
-	CPUModule cpu_mod;
+	std::cout << "RAM usage: " << map["RAMModule"]["ramUsage"] << '\n';
 
-	std::map<std::string, std::string> mapcpu = cpu_mod.getData();
-	std::cout << "Brand Name: " << mapcpu["brandName"] << '\n';
-	std::cout << "Core Count: " << mapcpu["coreCount"] << '\n';
-	std::cout << "CPU usage: " << mapcpu["cpuUsage"] << '\n';
-	
-	//RAMMODULE 
-	RAMModule ram_mod;
-	
-	std::map<std::string, std::string> mapram = ram_mod.getData();
-	std::cout << "RAM usage: " << mapram["ramUsage"] << '\n';	
-
-	//Network module
-	Network net_mod;
-
-	std::map<std::string, std::string> mapnet = net_mod.getData();
-	std::cout << "Network throughput: " << mapnet["network"] << '\n';	
+	std::cout << "Network throughput: " << map["NetworkModule"]["network"] << '\n';
 
 	return 0;
 }
