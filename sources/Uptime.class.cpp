@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Uptime.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadey <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/08 15:19:20 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/08 15:19:22 by tadey            ###   ########.fr       */
+/*   Updated: 2018/07/08 18:39:45 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Uptime.class.hpp"
 
 Uptime::Uptime () : _name("UPTIME") {
+	this->moduleName = "UptimeModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }
