@@ -6,29 +6,39 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:31:20 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:57:59 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:15:05 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "CPUModule.class.hpp"
 
-CPUModule::CPUModule () : _name("CPU USAGE")
+CPUModule::CPUModule ()
 {
 	this->moduleName = "CPUModule";
 	this->isUpdateRequired = false;
 	this->initData();
 }
-CPUModule::CPUModule (CPUModule const & src) {
+CPUModule::CPUModule (CPUModule const & src) : IMonitorModule(src) {
 	*this = src;
 	return ;
 }
 CPUModule::~CPUModule () {}
 
-bool	CPUModule::getUpdateRequired() const {	return this->isUpdateRequired;	}
+bool		CPUModule::getUpdateRequired()	const {	return this->isUpdateRequired;	}
+std::string CPUModule::getCpuName()			const {	return this->cpuname;	}
+std::string CPUModule::getBrandName()		const {	return this->brandName;	}
+std::string CPUModule::getCoreCount()		const {	return this->coreCount;	}
+std::string CPUModule::getClockSpeed()		const {	return this->clockspeed;	}
+std::string CPUModule::getCpuUsage()		const {	return this->cpuUsage;	}
 
 CPUModule & CPUModule::operator=(CPUModule const & rhs) {
 	if (this != &rhs) {
 		this->isUpdateRequired = rhs.getUpdateRequired();
+		this->cpuname = rhs.getCpuName();
+		this->brandName = rhs.getBrandName();
+		this->coreCount = rhs.getCoreCount();
+		this->clockspeed = rhs.getClockSpeed();
+		this->cpuUsage = rhs.getCpuUsage();
 	}
 	return *this;
 }
@@ -86,5 +96,3 @@ std::string CPUModule::parseCPUInfoUsage(){
 	myfile.close();
 	return (temp);
 }
-
-std::string CPUModule::getName() const {	return this->_name;	}

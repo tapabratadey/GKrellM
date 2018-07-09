@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 01:55:53 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 18:59:52 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 20:14:47 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 class CPUModule : public IMonitorModule {
 
 private:
-	const std::string _name;
 	std::string cpuname;
 	std::string brandName;
 	std::string coreCount;
@@ -36,6 +35,11 @@ public:
 	virtual ~CPUModule ();
 
 	bool	getUpdateRequired() const;
+	std::string getCpuName() const;
+	std::string getBrandName() const;
+	std::string getCoreCount() const;
+	std::string getClockSpeed() const;
+	std::string getCpuUsage() const;
 
 	CPUModule & operator=(CPUModule const &);
 
@@ -43,7 +47,6 @@ public:
 	void updateData();
 	std::map<std::string, std::string> getData();
 	void dataRunner();
-	std::string getName() const;
 
 	std::string parseInfo(std::string str);
 	std::string parseInfo2(std::string str);
