@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:53:03 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 19:03:12 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 19:10:29 by bpierce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 #include <sys/utsname.h>
 
 #include "BaseBase.class.hpp"
+#include "Minilibx.class.hpp"
+#include "Graph.class.hpp"
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#include "mlx.h"
+
+#ifdef __cplusplus
+}
+#endif
+
 
 int main() {
 	BaseBase base;
@@ -49,5 +63,7 @@ int main() {
 
 	std::cout << "Battery: " << map["BatteryModule"]["battery"] << '\n';
 	std::cout << std::endl;
+
+	
 	return 0;
 }

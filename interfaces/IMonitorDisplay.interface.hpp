@@ -13,11 +13,17 @@
 #ifndef IMONITORDISPLAY_INTERFACE_HPP
 # define IMONITORDISPLAY_INTERFACE_HPP
 
+# include "BaseBase.class.hpp"
+
 class IMonitorDisplay {
+
 private:
 	IMonitorDisplay & operator=(IMonitorDisplay const &);
+
 protected:
-	bool isUpdateRequired;
+	bool 		isUpdateRequired;
+	BaseBase 	*baseModule;
+
 public:
 	IMonitorDisplay () {}
 	IMonitorDisplay (IMonitorDisplay const &) {}
@@ -26,6 +32,8 @@ public:
 	virtual void screenInit() = 0;
 	virtual void screenDraw() = 0;
 	virtual void screenRefresh() = 0;
+
+	virtual BaseBase *getBaseModule() = 0;
 };
 
 
