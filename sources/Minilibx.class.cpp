@@ -113,7 +113,7 @@ void			Minilibx::screenInit(void)
 		_graphs[moduleIterator->first] = new Graph(_mlx);
 		_graphs[moduleIterator->first]->backgroundFill(0); // a green color
 		_graphs[moduleIterator->first]->setX(((_graphs.size() / 5) * (MINILIBX_WIN_WIDTH / 5)) + 20);
-		_graphs[moduleIterator->first]->setY(((_graphs.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 20);
+		_graphs[moduleIterator->first]->setY(((_graphs.size() % 5) * (MINILIBX_WIN_HEIGHT / 5)) + 25);
 	}
 	std::cout << "dslkfjlakds" << std::endl;
 }
