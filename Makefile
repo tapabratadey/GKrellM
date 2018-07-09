@@ -11,6 +11,7 @@ INTERR = $(patsubst %, $(INTERPATH)%, $(INTER))
 CLSPATH = ./includes/
 CLS = GenericModule.class.hpp OSModule.class.hpp DateTimeModule.class.hpp \
 			CPUModule.class.hpp RAMModule.class.hpp Network.class.hpp \
+			Uptime.class.hpp Battery.class.hpp \
 			BaseBase.class.cpp
 
 CLSR = $(patsubst %, $(CLSPATH)%, $(CLS))
@@ -20,6 +21,7 @@ DEPS = $(INTERR) $(CLSR)
 SRCPATH = sources/
 SRC  =	GenericModule.class.cpp OSModule.class.cpp DateTimeModule.class.cpp \
 				CPUModule.class.cpp RAMModule.class.cpp Network.class.cpp \
+				Uptime.class.cpp Battery.class.cpp \
 				BaseBase.class.cpp \
 				IMonitorModule.interface.cpp \
 				main.cpp

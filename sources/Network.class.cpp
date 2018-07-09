@@ -6,7 +6,7 @@
 /*   By: tadey <tadey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 18:20:20 by tadey             #+#    #+#             */
-/*   Updated: 2018/07/08 17:36:34 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:49:21 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,6 @@ std::string Network::parseNetworkUsage(){
     myfile.close();
     return (temp);
 }
+
+std::string Network::getName() const
+{return this->_name;}

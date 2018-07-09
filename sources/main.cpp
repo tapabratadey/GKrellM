@@ -6,7 +6,7 @@
 /*   By: maghayev <maghayev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 02:53:03 by maghayev          #+#    #+#             */
-/*   Updated: 2018/07/08 17:42:10 by maghayev         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:47:19 by maghayev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 #include <sys/sysctl.h>
 #include <sys/utsname.h>
 
+#include "GenericModule.class.hpp"
+#include "OSModule.class.hpp"
+#include "DateTimeModule.class.hpp"
+#include "CPUModule.class.hpp"
+#include "RAMModule.class.hpp"
+#include "Network.class.hpp"
+#include "Uptime.class.hpp"
+#include "Battery.class.hpp"
 #include "BaseBase.class.hpp"
-
 
 int main() {
 	BaseBase base;
@@ -46,5 +53,18 @@ int main() {
 
 	std::cout << "Network throughput: " << map["NetworkModule"]["network"] << '\n';
 
+
+	//Uptime module
+	Uptime uptime_mod;
+
+	std::map<std::string, std::string> mapuptime = uptime_mod.getData();
+	std::cout << "Uptime: " << mapuptime["uptime"] << '\n';
+
+	//Battery module
+	Battery battery_mod;
+
+	std::map<std::string, std::string> mapbattery = battery_mod.getData();
+	std::cout << "Battery: " << mapbattery["battery"] << '\n';
+	std::cout << std::endl;
 	return 0;
 }
