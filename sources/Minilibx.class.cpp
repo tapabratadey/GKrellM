@@ -94,6 +94,22 @@ void			Minilibx::setWin(void *win)
 
 // Public Member Functions
 
+void			Minilibx::screenInit(void)
+{
+	std::string	name = "Fantastic Mr. Monitor";
+
+	_mlx = mlx_init();
+	if (!_mlx)
+		throw Minilibx::MinilibxException("Failed to init MLX");
+	_win = mlx_new_window(getMlx(),
+		MINILIBX_WIN_WIDTH,
+		MINILIBX_WIN_HEIGHT,
+		const_cast<char *>(name.c_str()));
+	if (!_win)
+		throw Minilibx::MinilibxException("Failed to create mlx window");
+	this->screenRefresh();
+}
+
 void			Minilibx::screenDraw(void)
 {
 	for (std::map<IMonitorModule *, MlxImage *>::iterator module = _modules.begin() ; module != _modules.end() ; module++) {
@@ -125,23 +141,6 @@ void			Minilibx::screenDraw(IMonitorModule & im)
 void			Minilibx::_drawToScreen(MlxImage const & im) const
 {
 	mlx_put_image_to_window(_mlx, _win, im.getImg(), im.getX(), im.getY());
-}
-
-
-void			Minilibx::screenInit(void)
-{
-	std::string	name = "Fantastic Mr. Monitor";
-
-	_mlx = mlx_init();
-	if (!_mlx)
-		throw Minilibx::MinilibxException("Failed to init MLX");
-	_win = mlx_new_window(getMlx(),
-		MINILIBX_WIN_WIDTH,
-		MINILIBX_WIN_HEIGHT,
-		const_cast<char *>(name.c_str()));
-	if (!_win)
-		throw Minilibx::MinilibxException("Failed to create mlx window");
-	this->screenRefresh();
 }
 
 void			Minilibx::screenRefresh(void)
