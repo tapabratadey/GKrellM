@@ -33,7 +33,7 @@ public:
 	virtual void screenDraw() = 0;
 	virtual void screenRefresh() = 0;
 
-	virtual BaseBase *getBaseModule() = 0;
+	virtual BaseBase *getBaseModule() const = 0;
 };
 
 
