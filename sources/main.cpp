@@ -16,6 +16,7 @@
 
 #include "BaseBase.class.hpp"
 #include "Minilibx.class.hpp"
+#include "Ncurses.class.hpp"
 #include "Graph.class.hpp"
 
 #ifdef __cplusplus
@@ -64,6 +65,12 @@ int main() {
 	std::cout << "Battery: " << map["BatteryModule"]["battery"] << '\n';
 	std::cout << std::endl;
 
-	
+	Ncurses		n;
+
+	while (1)
+	{
+		n.screenDraw();
+		n.screenRefresh();
+	}
 	return 0;
 }
