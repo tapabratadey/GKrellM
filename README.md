@@ -7,7 +7,7 @@ NCURSES:</br>
 GUI: </br>
 ![DEMO](https://user-images.githubusercontent.com/12387917/43374005-4a268c82-9362-11e8-87bf-d2fdf6cfd3d2.gif) </br>
 Instructions on how to install:</br>
-git clone https://github.com/Shadowmad/cpprush01.git && cd cpprush01 && make re</br></br>
+git clone https://github.com/tapabratadey/GKrellM.git && cd cpprush01 && make re</br></br>
 To run the program:</br>
     Usage: ./ft_gkrellm [ text | gui ]</br>
     Control + C to exit.</br>
