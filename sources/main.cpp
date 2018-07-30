@@ -43,7 +43,7 @@ void initMiniLibX() {
 
 int main(int argc, char const *argv[]) {
 	if (argc == 1) {
-		std::cout << "Usage: ./ft_ft_gkrellm [ text | gui ]." << '\n';
+		std::cout << "Usage: ./ft_gkrellm [ text | gui ]." << '\n';
 		return 1;
 	}
 	std::string ncurse = "text";
