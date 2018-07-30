@@ -1,6 +1,6 @@
 # GKrellM
 
-An implementation of a System Monitoring Tool, GKrellM. There are two interfaces to this project, text and graphical gui. We used ncurses for the text version and Minilibx (a small library of OpenGL implemented by the 42 staff) for the graphical gui. </br></br>
+A two day group project of an implementation of a System Monitoring Tool, GKrellM. There are two interfaces to this project, text and graphical gui. We used ncurses for the text version and Minilibx (a small library of OpenGL implemented by the 42 staff) for the graphical gui. </br></br>
 
 NCURSES:</br>
 ![DEMO](https://user-images.githubusercontent.com/12387917/43374004-4a10f32c-9362-11e8-8e2c-c3cb53f75ded.gif) </br>
